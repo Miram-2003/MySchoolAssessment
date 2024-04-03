@@ -1,0 +1,90 @@
+
+
+body {
+  background: #eee;
+  padding-top: 56px;
+}
+
+#side_nav {
+  background: white;
+  min-width: 250px;
+  max-width: 250px;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  left: 0;
+
+}
+
+.navbar {
+  margin-left: 250px;
+
+}
+
+
+.content {
+  /* min-height: 100vh; */
+  width: 100%;
+  overflow-y: auto;
+  margin-left: 300px;
+  background: #eee;
+  margin-top: 100px;
+
+      padding-left: 20px; 
+      padding-right: 20px; 
+}
+
+hr.h-color {
+  background: #080808;
+  ;
+}
+
+.sidebar li.active {
+  background: #b40c90;
+  border-radius: 8px;
+}
+
+.sidebar li.active a,
+.sidebar li.active a:hover {
+  color: white;
+}
+
+.sidebar li a {
+  color: black;
+  font-size: large;
+}
+
+@media(max-width: 767px) {
+  #side_nav {
+    margin-left: -250px;
+    position: fixed;
+    min-height: 100vh;
+    z-index: 1;
+  }
+
+  #side_nav.active {
+    margin-left: 0;
+  }
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+}
+
+
+    .second-navbar {
+      position: fixed;
+      width: calc(100% - 20px); /* Adjusted width with a gap of 20px */
+      top: 70px; /* Adjust according to the height of the first navbar */
+      z-index: 1000; /* Ensure it's above other content */
+      background-color: #f8f9fa; /* Set your desired background color */
+      border-bottom: 1px solid #dee2e6; /* Add a border for separation */
+      
+      margin-right: 10px; /* Horizontal gap */
+    }
+
+    
+
+   
+   
