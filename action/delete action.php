@@ -5,7 +5,7 @@ if(!isset($_GET["id"])){
     header("Location:../view/class_view.php");
 }else{
     $classid = $_GET["id"];
-    $query ="DELETE FROM `student` WHERE `studentID` = ?";
+    $query ="DELETE FROM `Student` WHERE `studentID` = ?";
     $delete =$con->prepare($query);
     $delete->bind_param("i", $classid);
     $result=$delete->execute();

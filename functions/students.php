@@ -4,7 +4,7 @@ include "../settings/connection.php";
 function get_all_student_class($number){
     global $con;
 
-    $student_query="SELECT * FROM `student` WHERE `classID` = ?";
+    $student_query="SELECT * FROM `Student` WHERE `classID` = ?";
     $student_query = $con->prepare($student_query);
     $student_query->bind_param("i", $number);
     $student_query->execute();
@@ -16,7 +16,7 @@ function get_all_student_class($number){
 function get_a_student($number){
     global $con;
 
-    $student_query="SELECT * FROM `student` WHERE `studentID` = ?";
+    $student_query="SELECT * FROM `Student` WHERE `studentID` = ?";
     $student_query = $con->prepare($student_query);
     $student_query->bind_param("i", $number);
     $student_query->execute();
@@ -27,7 +27,7 @@ function get_a_student($number){
 function get_change_class($number){
     global $con;
 
-    $student_query="SELECT * FROM `student` WHERE `studentID` = ?";
+    $student_query="SELECT * FROM `Student` WHERE `studentID` = ?";
     $student_query = $con->prepare($student_query);
     $student_query->bind_param("i", $number);
     $student_query->execute();
@@ -45,7 +45,7 @@ function get_change_class($number){
 function change_student($number, $name){
     global $con;
 
-    $student_query="UPDATE `student` SET `studentName`=? WHERE `studentID`= ?";
+    $student_query="UPDATE `student` SET `StudentName`=? WHERE `studentID`= ?";
     $student_query = $con->prepare($student_query);
     $student_query->bind_param("si", $name, $number);
     $result =$student_query->execute();
@@ -56,7 +56,7 @@ function change_student($number, $name){
 function change_student_class($number, $name){
     global $con;
 
-    $student_query="UPDATE `student` SET `classID`=? WHERE `studentID`= ?";
+    $student_query="UPDATE `Student` SET `classID`=? WHERE `studentID`= ?";
     $student_query = $con->prepare($student_query);
     $student_query->bind_param("ii", $name, $number);
     $result =$student_query->execute();

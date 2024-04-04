@@ -22,7 +22,7 @@ $name = "$fname "."$lname";
 
 
 #write an insert query
-$teacher_query = "INSERT INTO `teacher`(`teacherID`, `teacherName`, `teacherContact`, `teacherEmail`, `teacherPwd`) 
+$teacher_query = "INSERT INTO `Teacher`(`teacherID`, `teacherName`, `teacherContact`, `teacherEmail`, `teacherPwd`) 
                 VALUES ('','$name','$contact','$email','$hash_password')";
 
 #execute the query
