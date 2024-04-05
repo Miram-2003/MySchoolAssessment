@@ -75,7 +75,7 @@ hr.h-color {
 
     .second-navbar {
       position: fixed;
-      width: calc(100% - 20px); /* Adjusted width with a gap of 20px */
+      width: calc(100% - 250px); /* Adjusted width with a gap of 20px */
       top: 70px; /* Adjust according to the height of the first navbar */
       z-index: 1000; /* Ensure it's above other content */
       background-color: #f8f9fa; /* Set your desired background color */
@@ -84,7 +84,10 @@ hr.h-color {
       margin-right: 10px; /* Horizontal gap */
     }
 
-    
-
    
-   
+   .register {
+    margin-top: 10px !important;
+    margin-left: 50px;
+    margin-right: 0px;
+    float: right;
+   }

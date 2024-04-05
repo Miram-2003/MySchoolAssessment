@@ -72,7 +72,7 @@ include "../functions/class.php";
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
 
       <form class="container-fluid justify-content-evenly" method="post">
-        <h5 style="margin-left:-250px" ;><b>Select a class </b></h5>
+        <h5><b>Select a class </b></h5>
 
         <select name="student_class" id="student_class" style="width:200px;">
           <option> </option>

@@ -72,7 +72,7 @@ include "../functions/class.php";
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
 
       <form class="container-fluid justify-content-evenly" method="post">
-        <h5 style="margin-left:-250px" ;><b>Select a class </b></h5>
+        <h5><b>Select a class </b></h5>
 
         <select name="student_class" id="student_class" style="width:200px;">
           <option> </option>
@@ -84,6 +84,10 @@ include "../functions/class.php";
           }
           ?>
         </select>
+        <label for='students'><b> Number of students to be registered</b> </label>
+        <input type='text' name='classNumber' id='student'>
+
+
         <button type="submit" name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Done</button>
       </form>
 
@@ -94,57 +98,31 @@ include "../functions/class.php";
 
     <div class="content">
       <?php
-      include "../functions/students.php";
-
-      $class = "";
-
+      $className = $classNumber = "";
       if (isset($_POST["submit"])) {
-        $class = $_POST["student_class"];
-        if ($class === "") {
-          echo "please choose a class";
-        } else {
-          $class_num = $class;
-          $result = get_all_student_class($class_num);
+        $classid = $_POST["student_class"];
+        $classNumber = $_POST["classNumber"];
 
-          $class_name = get_a_classname($class_num);
-          if ($result->num_rows === 0) {
-            echo "<div class='text-center'>";
-            echo "<h3>Class:" . $class_name . "</h3>";
-            echo "<p><span style='color:red; font-weight:bold;'>!!!!! No student is registered in this class</p>";
-            echo "<strong><a href = '../view/register student view.php'>Register Student</a></strong>";
-            echo "</div>";
-          } else {
-            $students = $result->fetch_all(MYSQLI_ASSOC);
-            $table = "<h3 class='text-center'>Class:" . $class_name . "</h3>";
-
-            $table .= "<table class='table table-light table-borderless '>";
-            $table .= "<thead class='table-info text-center '>";
-            $table .= "<tr>";
-            $table .= "<th scope='col'>Student Index Number</th>";
-            $table .= "<th scope='col'>Student Name</th>";
-            $table .= "<th>Action</th>";
-            $table .= "</tr>";
-            $table .= "</thead>";
-            $table .= "<tbody class='text-center'>";
-            foreach ($students as $row) {
-              $table .= "<tr>";
-              $table .= "<td >" . $row["studentIndex"] . "</td>";
-              $table .= "<td >" . $row["studentName"] . "</td>";
-              $table .= "<td>
-        <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editName\" class='btn btn-info'>Change Name</a>
-        <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editclass\" class='btn btn-secondary'>Change Class</a>
-        <a href=\"../action/delete action.php?id=" . $row['studentID'] . "\" class='btn btn-danger'>Remove Student</a>
-    </td>";
-              $table .= "</tr>";
-            }
-            $table .= "</tbody>";
-            $table .= "</table>";
-            echo $table;
-
-          }
+        $result = get_a_classname($classid);
+        $classForm = "<form action='../action/register_student_action.php' method='post'>";
+        $classForm .= "<input type='hidden' name ='stage' value='" . $result . "'>";
+        $classForm .= "<h3 class='text-center'><b>Class: " . $result . "</b></h3>";
+        for ($i = 0; $i < $classNumber; $i++) {
+          $classForm .= "<div class='form-group'>";
+          $classForm .= "<label class='form-label' for='studentName" . ($i + 1) . "'>Name of student " . ($i + 1) . "</label>";
+          $classForm .= "<input type='text' class='form-control form-control-sm' id='studentName" . ($i + 1) . "' name='input[]'>";
+          $classForm .= "</div>";
         }
+        
+        $classForm .= "<button type='submit' class='register btn btn-info' name='registerStudent'>Register</button>";
+        $classForm .= "<button type='submit' class='register btn btn-secondary' name='registerPreview'>Preview</button>";
+        $classForm .= "</form>";
+        echo $classForm;
+      } else {
+        
       }
       ?>
+
 
     </div>
   </div>
