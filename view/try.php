@@ -72,7 +72,7 @@ include "../functions/class.php";
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
 
       <form class="container-fluid justify-content-evenly" method="post">
-        <h6 style="margin-left:-250px" ;>Select a class </h6>
+        <h5 style="margin-left:-250px" ;><b>Select a class </b></h5>
 
         <select name="student_class" id="student_class" style="width:200px;">
           <option> </option>
@@ -84,7 +84,7 @@ include "../functions/class.php";
           }
           ?>
         </select>
-        <button type="submit" name="submit" class="btn btn-sm btn-outline-secondary" type="button">Done</button>
+        <button type="submit" name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Done</button>
       </form>
 
     </nav>
@@ -108,36 +108,39 @@ include "../functions/class.php";
 
           $class_name = get_a_classname($class_num);
           if ($result->num_rows === 0) {
+            echo "<div class='text-center'>";
             echo "<h3>Class:" . $class_name . "</h3>";
-            echo "No student is register in this class";
-            echo "<a href = '../view/register student view.php'>Register Student</a>";
+            echo "<p><span style='color:red; font-weight:bold;'>!!!!! No student is registered in this class</p>";
+            echo "<strong><a href = '../view/register student view.php'>Register Student</a></strong>";
+            echo "</div>";
           } else {
             $students = $result->fetch_all(MYSQLI_ASSOC);
-            $table = "<h3>Class:" . $class_name . "</h3>";
+            $table = "<h3 class='text-center'>Class:" . $class_name . "</h3>";
 
-            $table .= "<table>";
-            $table .= "<thead>";
+            $table .= "<table class='table table-light table-borderless '>";
+            $table .= "<thead class='table-info text-center '>";
             $table .= "<tr>";
-            $table .= "<th>Student Index Number</th>";
-            $table .= "<th>Student Name</th>";
+            $table .= "<th scope='col'>Student Index Number</th>";
+            $table .= "<th scope='col'>Student Name</th>";
             $table .= "<th>Action</th>";
             $table .= "</tr>";
             $table .= "</thead>";
-            $table .= "<tbody>";
+            $table .= "<tbody class='text-center'>";
             foreach ($students as $row) {
               $table .= "<tr>";
-              $table .= "<td>" . $row["studentIndex"] . "</td>";
-              $table .= "<td>" . $row["studentName"] . "</td>";
+              $table .= "<td >" . $row["studentIndex"] . "</td>";
+              $table .= "<td >" . $row["studentName"] . "</td>";
               $table .= "<td>
-                 <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editName\"> <button type='submit' name='edit'>change Name</button></a>
-                 <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editclass\"> <button type='submit' name='edit'>change Class</button></a>
-                 <a href=\"../action/delete action.php?id=" . $row['studentID'] . "\"> <button type='submit' name='edit'>Remove Student</button></a>
-                </td>";
+        <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editName\" class='btn btn-info'>Change Name</a>
+        <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editclass\" class='btn btn-secondary'>Change Class</a>
+        <a href=\"../action/delete action.php?id=" . $row['studentID'] . "\" class='btn btn-danger'>Remove Student</a>
+    </td>";
               $table .= "</tr>";
             }
             $table .= "</tbody>";
-            $table .= "</thead>";
+            $table .= "</table>";
             echo $table;
+
           }
         }
       }
