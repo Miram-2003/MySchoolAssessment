@@ -25,7 +25,7 @@ if (!isset ($_POST["registerStudent"]) && !isset ($_POST["registerPreview"])) {
 
         foreach ($studentNames as $student) {
             $index = generate_index();
-            $query = "INSERT INTO `student`( `studentIndex`, `studentName`, `classID`)
+            $query = "INSERT INTO `Student`( `studentIndex`, `studentName`, `classID`)
          VALUES (?,?,?)";
 
             $query_excuted = $con->prepare($query);

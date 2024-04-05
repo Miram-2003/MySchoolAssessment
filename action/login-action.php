@@ -12,7 +12,7 @@ if (!isset ($_POST["login"])) {
     $password = mysqli_real_escape_string($con, $_POST["password"]);
 
     #write a select query and execute it
-    $login_query = "SELECT * FROM `teacher` WHERE `teacherEmail` = ?";
+    $login_query = "SELECT * FROM `Teacher` WHERE `teacherEmail` = ?";
     $query = $con->prepare($login_query);
     if ($query) {
         $query->bind_param("s", $email);
