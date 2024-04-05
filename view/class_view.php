@@ -2,7 +2,6 @@
 include "../functions/class.php";
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,23 +18,7 @@ include "../functions/class.php";
             z-index: 999;
         }
 
-        .sidebar a {
-            display: block;
-            padding: 10px 20px;
-            text-decoration: none;
-            color: #333;
-        }
 
-        .sidebar a:hover {
-            background-color: #ddd;
-        }
-
-    .px-md-4 {
-    padding-right: 1.5rem !important;
-    padding-left: 20rem !important;
-}
-
-    </style>
 </head>
 
 <body>
@@ -111,42 +94,6 @@ include "../functions/class.php";
                     }
                 }
 
-                if (isset($_POST["submit"])) {
-                    $class = $_POST["student_class"];
-                    if ($class === "") {
-                        echo "please choose a class";
-                    } else {
-                        $class_num = $class;
-                        $result = get_all_student_class($class_num);
-
-                        $class_name = get_a_classname($class_num);
-                        if ($result->num_rows === 0) {
-                            echo "<h3>Class:" . $class_name . "</h3>";
-                            echo "No student is register in this class";
-                            echo "<a href = '../view/register student view.php'>Register Student</a>";
-                        } else {
-                            $students = $result->fetch_all(MYSQLI_ASSOC);
-                            $table = "<h3>Class:" . $class_name . "</h3>";
-
-                            $table .= "<table>";
-                            $table .= "<thead>";
-                            $table .= "<tr>";
-                            $table .= "<th>Student Index Number</th>";
-                            $table .= "<th>Student Name</th>";
-                            $table .= "<th>Action</th>";
-                            $table .= "</tr>";
-                            $table .= "</thead>";
-                            $table .= "<tbody>";
-                            foreach ($students as $row) {
-                                $table .= "<tr>";
-                                $table .= "<td>" . $row["studentIndex"] . "</td>";
-                                $table .= "<td>" . $row["studentName"] . "</td>";
-                                $table .= "<td>
-                 <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editName\"> <button type='submit' name='edit'>change Name</button></a>
-                 <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editclass\"> <button type='submit' name='edit'>change Class</button></a>
-                 <a href=\"../action/delete action.php?id=" . $row['studentID'] . "\"> <button type='submit' name='edit'>Remove Student</button></a>
-                </td>";
-                                $table .= "</tr>";
                             }
                             $table .= "</tbody>";
                             $table .= "</thead>";
@@ -156,65 +103,9 @@ include "../functions/class.php";
                 }
 
 
-                if (isset($_POST["submit"])) {
-                    $class = $_POST["student_class"];
-                    if ($class === "") {
-                        echo "please choose a class";
-                    } else {
-                        $class_num = $class;
-                        $result = get_all_student_class($class_num);
 
-                        $class_name = get_a_classname($class_num);
-                        if ($result->num_rows === 0) {
-                            echo "<h3>Class:" . $class_name . "</h3>";
-                            echo "No student is register in this class";
-                            echo "<a href = '../view/register student view.php'>Register Student</a>";
-                        } else {
-                            $students = $result->fetch_all(MYSQLI_ASSOC);
-                            $table = "<h3>Class:" . $class_name . "</h3>";
 
-                            $table .= "<table>";
-                            $table .= "<thead>";
-                            $table .= "<tr>";
-                            $table .= "<th>Student Index Number</th>";
-                            $table .= "<th>Student Name</th>";
-                            $table .= "<th>Action</th>";
-                            $table .= "</tr>";
-                            $table .= "</thead>";
-                            $table .= "<tbody>";
-                            foreach ($students as $row) {
-                                $table .= "<tr>";
-                                $table .= "<td>" . $row["studentIndex"] . "</td>";
-                                $table .= "<td>" . $row["studentName"] . "</td>";
-                                $table .= "<td>
-                 <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editName\"> <button type='submit' name='edit'>change Name</button></a>
-                 <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editclass\"> <button type='submit' name='edit'>change Class</button></a>
-                 <a href=\"../action/delete action.php?id=" . $row['studentID'] . "\"> <button type='submit' name='edit'>Remove Student</button></a>
-                </td>";
-                                $table .= "</tr>";
-                            }
-                            $table .= "</tbody>";
-                            $table .= "</thead>";
-                            echo $table;
-                        }
-                    }
-                }
-                if (isset($_POST["submit"])) {
-                    $class = $_POST["student_class"];
-                    if ($class === "") {
-                        echo "please choose a class";
-                    } else {
-                        $class_num = $class;
-                        $result = get_all_student_class($class_num);
 
-                        $class_name = get_a_classname($class_num);
-                        if ($result->num_rows === 0) {
-                            echo "<h3>Class:" . $class_name . "</h3>";
-                            echo "No student is register in this class";
-                            echo "<a href = '../view/register student view.php'>Register Student</a>";
-                        } else {
-                            $students = $result->fetch_all(MYSQLI_ASSOC);
-                            $table = "<h3>Class:" . $class_name . "</h3>";
 
                             $table .= "<table>";
                             $table .= "<thead>";
