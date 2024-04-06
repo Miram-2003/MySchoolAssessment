@@ -10,7 +10,6 @@ if (!isset ($_POST["login"])) {
 } else {
     $email = mysqli_real_escape_string($con, $_POST["email"]);
     $password = mysqli_real_escape_string($con, $_POST["password"]);
-
     #write a select query and execute it
     $login_query = "SELECT * FROM `Teacher` WHERE `teacherEmail` = ?";
     $query = $con->prepare($login_query);
@@ -24,12 +23,14 @@ if (!isset ($_POST["login"])) {
                 echo "Incorrect password or username";
                 
             } else {
-    
+                
                 $_SESSION["user_id"] = $row["teacherID"];
                 $_SESSION["name"] = $row["teacherName"];
-                header("Location:../view/home.php");
+                header("Location:../view/class_view.php");
             }
            
+    }else{
+        echo "you dont have an account";
     }
 }}
 

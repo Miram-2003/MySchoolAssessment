@@ -25,17 +25,18 @@ include "../functions/class.php";
             coding laugh </span> </h1> -->
       </div>
       <hr class="h-color mx-2">
+
       <ul class="list-unstyled px-2">
-        <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i> Dashboard</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i>Home</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i> student</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i> service</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i>Dashboard</a></li>
+        <li class="active"><a href="../view/home.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
+              style="color: #74C0FC;"></i> Home</a></li>
+        <li class=""><a href="../view/class_view.php" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-people-group"
+              style="color: #74C0FC;"></i>View Class</a></li>
+        <li class=""><a href="../view/register student view.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-users"
+              style="color: #74C0FC;"></i> Register Student</a></li>
+        <li class=""><a href="../view/assign grade.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file-pen"
+              style="color: #74C0FC;"></i> Record Assessment</a></li>
+        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-users-viewfinder"
+              style="color: #74C0FC;"></i>View Assessment Record</a></li>
       </ul>
 
       <hr class="h-color mx-2">
@@ -109,13 +110,13 @@ include "../functions/class.php";
           $class_name = get_a_classname($class_num);
           if ($result->num_rows === 0) {
             echo "<div class='text-center'>";
-            echo "<h3>Class:" . $class_name . "</h3>";
-            echo "<p><span style='color:red; font-weight:bold;'>!!!!! No student is registered in this class</p>";
-            echo "<strong><a href = '../view/register student view.php'>Register Student</a></strong>";
+            echo "<h3 style='color:black;'>Class:" . $class_name . "</h3>";
+            echo "<p><span style='color:red; font-size:x-large; font-weight:bold;'>!!!!! No student is registered in this class</p>";
+            echo "<button><strong><a class='text-decoration-none' href = '../view/register student view.php'>Register Student</a></strong></button>";
             echo "</div>";
           } else {
             $students = $result->fetch_all(MYSQLI_ASSOC);
-            $table = "<h3 class='text-center'>Class:" . $class_name . "</h3>";
+            $table = "<h3 class='text-center' style='color:black;'>Class:" . $class_name . "</h3>";
 
             $table .= "<table class='table table-light table-borderless '>";
             $table .= "<thead class='table-info text-center '>";

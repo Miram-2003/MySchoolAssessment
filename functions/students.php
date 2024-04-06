@@ -1,6 +1,6 @@
 <?php
 include "../settings/connection.php";
-// include "../functions/class.php";
+
 function get_all_student_class($number){
     global $con;
 
@@ -35,12 +35,12 @@ function get_change_class($number){
     if($result){
         $row=$result->fetch_assoc();
         $classid = $row['classID'];
-       $class= get_a_class($classid);
+       $class= get_a_classname($classid);
        return $class;
 
-    };
+    }}
 
-}
+
 
 function change_student($number, $name){
     global $con;

@@ -1,5 +1,6 @@
 <?php
 include "../functions/class.php";
+session_start()
 ?>
 
 <!DOCTYPE html>
@@ -26,16 +27,16 @@ include "../functions/class.php";
       </div>
       <hr class="h-color mx-2">
       <ul class="list-unstyled px-2">
-        <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i> Dashboard</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i>Home</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i> student</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i> service</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i>Dashboard</a></li>
+      <li class="active"><a href="../view/home.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
+              style="color: #74C0FC;"></i> Home</a></li>
+        <li class=""><a href="../view/class_view.php" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-people-group"
+              style="color: #74C0FC;"></i>View Class</a></li>
+        <li class=""><a href="../view/register student view.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-users"
+              style="color: #74C0FC;"></i> Register Student</a></li>
+        <li class=""><a href="../view/assign grade.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file-pen"
+              style="color: #74C0FC;"></i> Record Assessment</a></li>
+        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-users-viewfinder"
+              style="color: #74C0FC;"></i>View Assessment Record</a></li>
       </ul>
 
       <hr class="h-color mx-2">
@@ -118,7 +119,7 @@ include "../functions/class.php";
         $classForm .= "<button type='submit' class='register btn btn-secondary' name='registerPreview'>Preview</button>";
         $classForm .= "</form>";
         echo $classForm;
-      } else {
+      } elseif(isset($_POST["submit"])){
         
       }
       ?>

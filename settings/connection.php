@@ -2,7 +2,7 @@
 
 $_SERVER = "localhost";
 $USERNAME = "root";
-$PASSWORD = "kch6Xcwx3FF/";
+$PASSWORD = "";
 $DB = "school_assessment";
 
 $con =new mysqli($_SERVER, $USERNAME, $PASSWORD, $DB) or die("could not connect database");

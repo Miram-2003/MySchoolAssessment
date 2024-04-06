@@ -1,6 +1,4 @@
-<?php
-include "../functions/class.php";
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +10,6 @@ include "../functions/class.php";
   <script src="https://kit.fontawesome.com/cb76afc7c2.js" crossorigin="anonymous"></script>
   <link href="../css/style.css" rel="stylesheet" />
   <title>Document</title>
-
 
 </head>
 
@@ -26,16 +23,16 @@ include "../functions/class.php";
       </div>
       <hr class="h-color mx-2">
       <ul class="list-unstyled px-2">
-        <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i> Dashboard</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i>Home</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i> student</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i> service</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i>Dashboard</a></li>
+        <li class="active"><a href="../view/home.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
+              style="color: #74C0FC;"></i> Home</a></li>
+        <li class=""><a href="../view/class_view.php" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-people-group"
+              style="color: #74C0FC;"></i>View Class</a></li>
+        <li class=""><a href="../view/register student view.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-users"
+              style="color: #74C0FC;"></i> Register Student</a></li>
+        <li class=""><a href="../view/assign grade.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file-pen"
+              style="color: #74C0FC;"></i> Record Assessment</a></li>
+        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-users-viewfinder"
+              style="color: #74C0FC;"></i>View Assessment Record</a></li>
       </ul>
 
       <hr class="h-color mx-2">
@@ -72,7 +69,11 @@ include "../functions/class.php";
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
 
       <form class="container-fluid justify-content-evenly" method="post">
-        <h5><b>Select a class </b></h5>
+        <div class="container-fluid justify-content-evenly">
+
+      
+        <h5><b>Change student'second class/ name</b></h5>
+        
 
         <select name="student_class" id="student_class" style="width:200px;">
           <option> </option>
@@ -90,6 +91,7 @@ include "../functions/class.php";
 
         <button type="submit" name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Done</button>
       </form>
+      </div>
 
     </nav>
 
@@ -97,35 +99,22 @@ include "../functions/class.php";
 
 
     <div class="content">
-      <?php
-      $className = $classNumber = "";
-      if (isset($_POST["submit"])) {
-        $classid = $_POST["student_class"];
-        $classNumber = $_POST["classNumber"];
+    <div class="container">
+    <div class="row justify-content-center" id='previewForm'>
+        
+      <?php  echo $forms?>
 
-        $result = get_a_classname($classid);
-        $classForm = "<form action='../action/register_student_action.php' method='post'>";
-        $classForm .= "<input type='hidden' name ='stage' value='" . $result . "'>";
-        $classForm .= "<h3 class='text-center'><b>Class: " . $result . "</b></h3>";
-        for ($i = 0; $i < $classNumber; $i++) {
-          $classForm .= "<div class='form-group'>";
-          $classForm .= "<label class='form-label' for='studentName" . ($i + 1) . "'>Name of student " . ($i + 1) . "</label>";
-          $classForm .= "<input type='text' class='form-control form-control-sm' id='studentName" . ($i + 1) . "' name='input[]'>";
-          $classForm .= "</div>";
-        }
-        
-        $classForm .= "<button type='submit' class='register btn btn-info' name='registerStudent'>Register</button>";
-        $classForm .= "<button type='submit' class='register btn btn-secondary' name='registerPreview'>Preview</button>";
-        $classForm .= "</form>";
-        echo $classForm;
-      } else {
-        
-      }
-      ?>
+   
+
+
+    
+    </div>
+</div>
 
 
     </div>
   </div>
+
 
 
 
@@ -146,6 +135,24 @@ include "../functions/class.php";
     $('.close-btn').on('click', function () {
       $('.sidebar').removeClass('active');
     })
+
+
+
+
+    $("#preview").on("click", function () {
+      // Display the chore form container as a modal
+      $("#previewForm").css("display", "block");
+      // Reset the rowIndex in dataset
+      $("#previewSubmit").data("rowIndex", "");
+      // Clear input field
+      // $("#choreName").val(""); // Clear input field
+    });
+
+    // Close Form Button Click Event
+    $("#stopPreview").on("click", function () {
+      // Hide the chore form container
+      $("#previewForm").css("display", "none");
+    });
   </script>
 </body>
 
