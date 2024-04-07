@@ -28,9 +28,8 @@ CREATE TABLE Teacher (
 -- Table: Subject
 CREATE TABLE Subject (
     subjectID INT PRIMARY KEY AUTO_INCREMENT,
-    subjectName VARCHAR(255),
-    teacherID INT,
-    FOREIGN KEY (teacherID) REFERENCES Teacher(teacherID)
+    subjectName VARCHAR(255)
+   
 );
 
 CREATE TABLE Term (

@@ -1,4 +1,9 @@
+<?php
+include "../functions/class.php";
 
+include "../settings/connection.php";
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,14 +28,14 @@
       </div>
       <hr class="h-color mx-2">
       <ul class="list-unstyled px-2">
-        <li class="active"><a href="../view/home.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i> Home</a></li>
-        <li class=""><a href="../view/class_view.php" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-people-group"
-              style="color: #74C0FC;"></i>View Class</a></li>
-        <li class=""><a href="../view/register student view.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-users"
-              style="color: #74C0FC;"></i> Register Student</a></li>
-        <li class=""><a href="../view/assign grade.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file-pen"
-              style="color: #74C0FC;"></i> Record Assessment</a></li>
+        <li class="active"><a href="../view/home.php" class="text-decoration-none px-3 py-2 d-block"><i
+              class="fa-solid fa-house" style="color: #74C0FC;"></i> Home</a></li>
+        <li class=""><a href="../view/class_view.php" class="text-decoration-none px-3 py-2 d-block"> <i
+              class="fa-solid fa-people-group" style="color: #74C0FC;"></i>View Class</a></li>
+        <li class=""><a href="../view/register student view.php" class="text-decoration-none px-3 py-2 d-block"><i
+              class="fa-solid fa-users" style="color: #74C0FC;"></i> Register Student</a></li>
+        <li class=""><a href="../view/assign grade.php" class="text-decoration-none px-3 py-2 d-block"><i
+              class="fa-solid fa-file-pen" style="color: #74C0FC;"></i> Record Assessment</a></li>
         <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-users-viewfinder"
               style="color: #74C0FC;"></i>View Assessment Record</a></li>
       </ul>
@@ -71,48 +76,120 @@
       <form class="container-fluid justify-content-evenly" method="post">
         <div class="container-fluid justify-content-evenly">
 
-      
-        <h5><b>Change student'second class/ name</b></h5>
-        
 
-        <select name="student_class" id="student_class" style="width:200px;">
-          <option> </option>
-          <?php
-          $result = get_all_class($con);
+          <!-- <h5><b>Change student'second class/ name</b></h5> -->
+          <lable for="classname">Class Name</lable>
+          <select name="classname" id="student_class" style="width:200px;">
+            <option> </option>
+            <?php
+            $result = get_all_class($con);
 
-          foreach ($result as $row) {
-            echo "<option value=" . $row['classID'] . ">" . $row["className"] . "</option>";
-          }
-          ?>
-        </select>
-        <label for='students'><b> Number of students to be registered</b> </label>
-        <input type='text' name='classNumber' id='student'>
+            foreach ($result as $row) {
+              echo "<option value=" . $row['classID'] . ">" . $row["className"] . "</option>";
+            }
+            ?>
+          </select>
 
 
-        <button type="submit" name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Done</button>
+          <lable for="classterm">Term</lable>
+          <select name="termname" id="student_class">
+            <option> </option>
+            <?php
+            $result = get_all_term($con);
+            foreach ($result as $row) {
+              echo "<option value=" . $row['termID'] . ">" . $row["termName"] . "</option>";
+            }
+            ?>
+          </select>
+
+
+          <label for='students'><b> Suject Name</b> </label>
+          <input type="input" name="subject" id="subject">
+
+          <lable for="assessment">Assessment Name</lable>
+          <input type="input" name="assessment" id="subject">
+          <!-- <input type='text' name='classNumber' id='student'> -->
+
+
+          <button type="submit" name="submitAssessment" class="register btn btn-lg btn-info btn-outlin-dark"
+            type="button">Done</button>
       </form>
-      </div>
+  </div>
 
-    </nav>
-
-
+  </nav>
 
 
-    <div class="content">
+
+
+  <div class="content" style='padding-top:50px' ;>
     <div class="container">
-    <div class="row justify-content-center" id='previewForm'>
+      <div class="row justify-content-center">
+        <?php
+     
+        if (!isset($_POST["submitAssessment"])) {
+          exit();
+        } else {
+          $term = $_POST["termname"];
+          $class = $_POST["classname"];
+          $subject = $_POST["subject"];
+          $assessment = $_POST["assessment"];
+          $classname = get_a_classname($class);
+          $termname = get_a_termname($term);
+
+          $query = "SELECT * FROM `student` WHERE `classID` = ?";
+          $query_prepare = $con->prepare($query);
+          $query_prepare->bind_param("i", $class);
+          $query_prepare->execute();
+          $query_excuted = $query_prepare->get_result();
+          if ($query_excuted) {
+            $data = $query_excuted->fetch_all(MYSQLI_ASSOC);
+
+            $stu_form = "<form action='../action/grade_action.php' method ='post'>";
+            $stu_form .= "<div class='container'>";
+            $stu_form .= "<div class='row'>";
+            $stu_form .= "<div class='col'>";
+            $stu_form .= "<table class='table table-primary table-striped-columns table-borderless'>";
+            $stu_form .= "<tr><th>Class:</th><th>" . $classname . "</th></tr>";
+            $stu_form .= "<tr><th>Term:</th><th>" . $termname . "</th></tr>";
+            $stu_form .= "<tr><th>Subject:</th><th>" . $subject . "</th></tr>";
+            $stu_form .= "<tr><th>Assessment Name:</th><th>" . $assessment . "</th></tr>";
+            $stu_form .= "</table>";
+            $stu_form .= "</div></div>";
+
+            $stu_form .= "<div class='row'>";
+            $stu_form .= "<div class='col'>";
+            $stu_form .= "<table class='table table-light table-borderless'>";
+            $stu_form .= "<tr><th>Student Name</th><th>Score/Marks</th></th>";
+            foreach ($data as $row) {
+              $stu_form .= "<tr>";
+              $stu_form .= "<td><input type='hidden' name='student[]' value='" . $row["studentID"] . "'>" . $row["studentName"] . "</td>";
+              $stu_form .= "<td><input type='text' class='form-control' name='marks[]'></td>";
+              $stu_form .= "</tr>";
+            }
+            $stu_form .= "</table>";
+            $stu_form .= "</div></div>";
+
+            $stu_form .= "<button type='submit' class='register btn btn-info' name='grade'>Submitgrades</button>";
+            $stu_form .= "</form>";
+            echo $stu_form;
+          }
+
+          $_SESSION["term"]= $term;
+          $_SESSION["class"]= $class;
+          $_SESSION["subject"]= $subject;
+          $_SESSION["assessment"]= $assessment;
         
-      <?php  echo $forms?>
+          
+        }
 
-   
+        
+        ?>
 
-
-    
+      </div>
     </div>
-</div>
 
-
-    </div>
+    <br><br>
+  </div>
   </div>
 
 
