@@ -17,7 +17,6 @@ $email = $password = "";
         if($result->num_rows>0){
             $row=$result->fetch_assoc();
             if (!password_verify($password, $row["teacherPwd"])) {
-
                 echo json_encode(['success' => false, 'message' => 'Incorrect password or username']);
                                
             } else {

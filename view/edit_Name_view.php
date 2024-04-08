@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
         $result = get_a_student($studentid);
         if ($result) {
             $rows = $result->fetch_assoc();
-            $forms = "<form action='../action/edit action.php' method='post'>";
+            $forms = "<form action='../action/edit action.php' method='post' id='#editnameForm'>";
             $forms .= "<div class='form-group'>";
             $forms .= "<input type='hidden' name='studentID' value='".$studentid."'><br>";
             $forms .= "<b><label for='StudentName'>Student Name</label></b>";

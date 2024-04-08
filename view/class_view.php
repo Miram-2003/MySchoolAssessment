@@ -22,8 +22,7 @@ include "../functions/class.php";
     <div class="sidebar" id="side_nav">
       <div class="header-box px-3 pt-2 pb-4 d-flex justify-content-between">
         <img src="../images/logo.png" class="logo fs-4 rounded mx-auto d-block" alt="logo">
-        <!-- <h1 class="fs-4"><span class="bg-white text-dark rounded shadow px-2 me-2">CL</span><span class="text-white">
-            coding laugh </span> </h1> -->
+        
       </div>
       <hr class="h-color mx-2">
 
@@ -90,10 +89,6 @@ include "../functions/class.php";
       </form>
 
     </nav>
-
-
-
-
     <div class="content">
 
 
@@ -101,111 +96,11 @@ include "../functions/class.php";
   </div>
 
 
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script>
-
-    $(".sidebar ul li").on('click', function () {
-      $(".sidebar ul li.active").removeClass('active');
-      $(this).addClass('active');
-
-    })
-
-    $('.open-btn').on('click', function () {
-      $('.sidebar').addClass('active');
-    })
-
-    $('.close-btn').on('click', function () {
-      $('.sidebar').removeClass('active');
-    })
-
-    $(document).ready(function () {
-      $('#classform').submit(function (e) {
-        e.preventDefault();
-
-        var classname = $('#student_class').val();
-        if (classname === '') {
-          Swal.fire({
-            icon: 'error',
-            title: 'Sorry..',
-            text: 'please select a class'
-          })
-          return;
-        }
-
-        $.ajax({
-          url: '../action/view_class.php',
-          type: 'POST',
-          data: $(this).serialize(),
-          success: function (response) {
-            $('.content').html(response);
-          }
-
-        })
-      })
-
-    })
-
-
-
-
-
-
-
-
-
-
-
-    $(document).ready(function () {
-      // Edit action
-      $(document).on('click', '.edit', function (e) {
-        e.preventDefault(); // Prevent default link behavior
-
-        var studentID = $(this).data('student-id');
-        var actionName = $(this).data('action-name');
-        
-
-        // AJAX request for edit action
-        $.ajax({
-          url: '../view/edit_Name_view.php',
-          type: 'GET',
-          data: { id: studentID, name: actionName },
-          success: function (response) {
-            // Update the content div with the response
-            $('.content').html(response);
-          },
-          error: function (xhr, status, error) {
-            console.error('Error performing edit action: ' + error);
-          }
-        });
-      });
-
-      // Delete action
-      $(document).on('click', '.deleteBtn', function (e) {
-        e.preventDefault(); // Prevent default link behavior
-
-        var studentID = $(this).data('student-id');
-
-        // AJAX request for delete action
-        $.ajax({
-          url: '../action/delete_action.php',
-          type: 'GET',
-          data: { id: studentID },
-          success: function (response) {
-            // Optionally handle success response
-            // For example, display a success message or reload the student list
-            console.log('Student deleted successfully');
-          },
-          error: function (xhr, status, error) {
-            console.error('Error performing delete action: ' + error);
-          }
-        });
-      });
-    });
-
-
-  </script>
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/class.js"></script>
+  
 </body>
 
 </html>

@@ -1,18 +1,16 @@
 <?php
 include "../settings/connection.php";
-
-if(!isset($_GET["id"])){
-    header("Location:../view/class_view.php");
-}else{
-    $classid = $_GET["id"];
+$studentid="";
+if(isset($_GET["id"])){
+    $studentid = $_GET["id"];
     $query ="DELETE FROM `Student` WHERE `studentID` = ?";
     $delete =$con->prepare($query);
-    $delete->bind_param("i", $classid);
+    $delete->bind_param("i", $studentid);
     $result=$delete->execute();
     if ($result){
-        header("Location:../view/class_view.php");
+        echo json_encode(['success' => true, 'message' => 'Student removed successful']);
     }else{
-        echo "sorry something went wrong";
+        echo json_encode(['success' => false, 'message' => 'Sorry, could not remove student']);
     }
 }
 
