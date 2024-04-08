@@ -5,9 +5,6 @@ session_start();
 $email = $password = "";
 
 #check if the login button is clicked then collect the data
-if (!isset ($_POST["login"])) {
-    header("Location:../login/login.php");
-} else {
     $email = mysqli_real_escape_string($con, $_POST["email"]);
     $password = mysqli_real_escape_string($con, $_POST["password"]);
     #write a select query and execute it
@@ -20,19 +17,20 @@ if (!isset ($_POST["login"])) {
         if($result->num_rows){
             $row=$result->fetch_assoc();
             if (!password_verify($password, $row["teacherPwd"])) {
-                echo "Incorrect password or username";
-                
+
+                echo json_encode(['success' => false, 'message' => 'Incorrect password or username']);
+                               
             } else {
                 
                 $_SESSION["user_id"] = $row["teacherID"];
                 $_SESSION["name"] = $row["teacherName"];
-                header("Location:../view/class_view.php");
+            echo json_encode(['success' => true, 'message' => 'Login successful!']);
             }
            
     }else{
-        echo "you dont have an account";
+        echo json_encode(['success' => false, 'message' => 'login failed! Please try again.']);
     }
-}}
+}
 
 
 ?>
