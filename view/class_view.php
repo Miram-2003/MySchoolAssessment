@@ -10,6 +10,7 @@ include "../functions/class.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/cb76afc7c2.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <link href="../css/style.css" rel="stylesheet" />
   <title>Document</title>
 
@@ -27,14 +28,14 @@ include "../functions/class.php";
       <hr class="h-color mx-2">
 
       <ul class="list-unstyled px-2">
-        <li class="active"><a href="../view/home.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i> Home</a></li>
-        <li class=""><a href="../view/class_view.php" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-people-group"
-              style="color: #74C0FC;"></i>View Class</a></li>
-        <li class=""><a href="../view/register student view.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-users"
-              style="color: #74C0FC;"></i> Register Student</a></li>
-        <li class=""><a href="../view/assign grade.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file-pen"
-              style="color: #74C0FC;"></i> Record Assessment</a></li>
+        <li class="active"><a href="../view/home.php" class="text-decoration-none px-3 py-2 d-block"><i
+              class="fa-solid fa-house" style="color: #74C0FC;"></i> Home</a></li>
+        <li class=""><a href="../view/class_view.php" class="text-decoration-none px-3 py-2 d-block"> <i
+              class="fa-solid fa-people-group" style="color: #74C0FC;"></i>View Class</a></li>
+        <li class=""><a href="../view/register student view.php" class="text-decoration-none px-3 py-2 d-block"><i
+              class="fa-solid fa-users" style="color: #74C0FC;"></i> Register Student</a></li>
+        <li class=""><a href="../view/assign grade.php" class="text-decoration-none px-3 py-2 d-block"><i
+              class="fa-solid fa-file-pen" style="color: #74C0FC;"></i> Record Assessment</a></li>
         <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-users-viewfinder"
               style="color: #74C0FC;"></i>View Assessment Record</a></li>
       </ul>
@@ -72,7 +73,7 @@ include "../functions/class.php";
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
 
-      <form class="container-fluid justify-content-evenly" method="post">
+      <form class="container-fluid justify-content-evenly" method="post" id='classform'>
         <h5><b>Select a class </b></h5>
 
         <select name="student_class" id="student_class" style="width:200px;">
@@ -94,58 +95,7 @@ include "../functions/class.php";
 
 
     <div class="content">
-      <?php
-      include "../functions/students.php";
 
-      $class = "";
-
-      if (isset($_POST["submit"])) {
-        $class = $_POST["student_class"];
-        if ($class === "") {
-          echo "please choose a class";
-        } else {
-          $class_num = $class;
-          $result = get_all_student_class($class_num);
-
-          $class_name = get_a_classname($class_num);
-          if ($result->num_rows === 0) {
-            echo "<div class='text-center'>";
-            echo "<h3 style='color:black;'>Class:" . $class_name . "</h3>";
-            echo "<p><span style='color:red; font-size:x-large; font-weight:bold;'>!!!!! No student is registered in this class</p>";
-            echo "<button><strong><a class='text-decoration-none' href = '../view/register student view.php'>Register Student</a></strong></button>";
-            echo "</div>";
-          } else {
-            $students = $result->fetch_all(MYSQLI_ASSOC);
-            $table = "<h3 class='text-center' style='color:black;'>Class:" . $class_name . "</h3>";
-
-            $table .= "<table class='table table-light table-borderless '>";
-            $table .= "<thead class='table-info text-center '>";
-            $table .= "<tr>";
-            $table .= "<th scope='col'>Student Index Number</th>";
-            $table .= "<th scope='col'>Student Name</th>";
-            $table .= "<th>Action</th>";
-            $table .= "</tr>";
-            $table .= "</thead>";
-            $table .= "<tbody class='text-center'>";
-            foreach ($students as $row) {
-              $table .= "<tr>";
-              $table .= "<td >" . $row["studentIndex"] . "</td>";
-              $table .= "<td >" . $row["studentName"] . "</td>";
-              $table .= "<td>
-        <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editName\" class='btn btn-info'>Change Name</a>
-        <a href=\"../view/edit_Name_view.php?id=" . $row['studentID'] . "&name=editclass\" class='btn btn-secondary'>Change Class</a>
-        <a href=\"../action/delete action.php?id=" . $row['studentID'] . "\" class='btn btn-danger'>Remove Student</a>
-    </td>";
-              $table .= "</tr>";
-            }
-            $table .= "</tbody>";
-            $table .= "</table>";
-            echo $table;
-
-          }
-        }
-      }
-      ?>
 
     </div>
   </div>
@@ -169,6 +119,92 @@ include "../functions/class.php";
     $('.close-btn').on('click', function () {
       $('.sidebar').removeClass('active');
     })
+
+    $(document).ready(function () {
+      $('#classform').submit(function (e) {
+        e.preventDefault();
+
+        var classname = $('#student_class').val();
+        if (classname === '') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Sorry..',
+            text: 'please select a class'
+          })
+          return;
+        }
+
+        $.ajax({
+          url: '../action/view_class.php',
+          type: 'POST',
+          data: $(this).serialize(),
+          success: function (response) {
+            $('.content').html(response);
+          }
+
+        })
+      })
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+    $(document).ready(function () {
+      // Edit action
+      $(document).on('click', '.edit', function (e) {
+        e.preventDefault(); // Prevent default link behavior
+
+        var studentID = $(this).data('student-id');
+        var actionName = $(this).data('action-name');
+        
+
+        // AJAX request for edit action
+        $.ajax({
+          url: '../view/edit_Name_view.php',
+          type: 'GET',
+          data: { id: studentID, name: actionName },
+          success: function (response) {
+            // Update the content div with the response
+            $('.content').html(response);
+          },
+          error: function (xhr, status, error) {
+            console.error('Error performing edit action: ' + error);
+          }
+        });
+      });
+
+      // Delete action
+      $(document).on('click', '.deleteBtn', function (e) {
+        e.preventDefault(); // Prevent default link behavior
+
+        var studentID = $(this).data('student-id');
+
+        // AJAX request for delete action
+        $.ajax({
+          url: '../action/delete_action.php',
+          type: 'GET',
+          data: { id: studentID },
+          success: function (response) {
+            // Optionally handle success response
+            // For example, display a success message or reload the student list
+            console.log('Student deleted successfully');
+          },
+          error: function (xhr, status, error) {
+            console.error('Error performing delete action: ' + error);
+          }
+        });
+      });
+    });
+
+
   </script>
 </body>
 

@@ -191,6 +191,7 @@ include "../functions/students.php"
 
           success: function (response) {
             $('.content').html(response);
+            
             $('#gradeForm').submit(function (e) {
               e.preventDefault(); 
               var formData = $(this).serialize();
