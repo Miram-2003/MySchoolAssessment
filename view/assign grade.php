@@ -1,8 +1,7 @@
 <?php
 include "../functions/class.php";
-
-include "../settings/connection.php";
-?>
+include "../functions/students.php"
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +11,8 @@ include "../settings/connection.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/cb76afc7c2.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <link href="../css/style.css" rel="stylesheet" />
   <title>Document</title>
 
@@ -22,7 +23,7 @@ include "../settings/connection.php";
     <div class="sidebar" id="side_nav">
       <div class="header-box px-3 pt-2 pb-4 d-flex justify-content-between">
         <img src="../images/logo.png" class="logo fs-4 rounded mx-auto d-block" alt="logo">
-    
+
       </div>
       <hr class="h-color mx-2">
       <ul class="list-unstyled px-2">
@@ -71,12 +72,12 @@ include "../settings/connection.php";
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
 
-      <form class="container-fluid justify-content-evenly" method="post">
+      <form class="container-fluid justify-content-evenly" method="post" id="navform">
         <div class="container-fluid justify-content-evenly">
 
 
           <lable for="classname"><b>Class Name</b></lable>
-          <select name="classname" id="student_class" style="width:200px;">
+          <select name="classname" id="classname" style="width:200px;">
             <option> </option>
             <?php
             $result = get_all_class($con);
@@ -89,7 +90,7 @@ include "../settings/connection.php";
 
 
           <lable for="classterm"><b>Term</b></lable>
-          <select name="termname" id="student_class">
+          <select name="termname" id="termname">
             <option> </option>
             <?php
             $result = get_all_term($con);
@@ -101,14 +102,24 @@ include "../settings/connection.php";
 
 
           <label for='students'><b> Suject Name</b> </label>
-          <input type="input" name="subject" id="subject">
+          <select name="subject" id="subject">
+            <option> </option>
+            <?php
+            $result = get_all_subject($con);
+            foreach ($result as $row) {
+              echo "<option value=" . $row['subjectID'] . ">" . $row["subjectName"] . "</option>";
+            }
+            ?>
+          </select>
+
+
 
           <lable for="assessment"><b>Assessment Name</b></lable>
-          <input type="input" name="assessment" id="subject">
+          <input type="input" name="assessment" id="assessment">
 
 
-          <button type="submit" name="submitAssessment" class="register btn btn-lg btn-info btn-outlin-dark"
-            type="button">Done</button>
+          <button type="submit" name="submitAssessment" id="pen-btn"
+            class="register btn btn-lg btn-info btn-outlin-dark" type="button">Done</button>
       </form>
   </div>
 
@@ -120,58 +131,7 @@ include "../settings/connection.php";
   <div class="content" style='padding-top:50px' ;>
     <div class="container">
       <div class="row justify-content-center">
-        <?php
-        if (!isset($_POST["submitAssessment"])) {
-          exit();
-        } else {
-          $term = $_POST["termname"];
-          $class = $_POST["classname"];
-          $subject = $_POST["subject"];
-          $assessment = $_POST["assessment"];
-          $classname = get_a_classname($class);
-          $termname = get_a_termname($term);
 
-          $query = "SELECT * FROM `student` WHERE `classID` = ?";
-          $query_prepare = $con->prepare($query);
-          $query_prepare->bind_param("i", $class);
-          $query_prepare->execute();
-          $query_excuted = $query_prepare->get_result();
-          if ($query_excuted) {
-            $data = $query_excuted->fetch_all(MYSQLI_ASSOC);
-
-            $stu_form = "<form action='../action/grade_action.php' method ='post'>";
-            $stu_form .= "<div class='container'>";
-            $stu_form .= "<div class='row'>";
-            $stu_form .= "<div class='col'>";
-            $stu_form .= "<table class='table table-primary table-striped-columns table-borderless'>";
-            $stu_form .= "<tr><th>Class:</th><th>" . $classname . "</th></tr>";
-            $stu_form .= "<tr><th>Term:</th><th>" . $termname . "</th></tr>";
-            $stu_form .= "<tr><th>Subject:</th><th>" . $subject . "</th></tr>";
-            $stu_form .= "<tr><th>Assessment Name:</th><th>" . $assessment . "</th></tr>";
-            $stu_form .= "</table>";
-            $stu_form .= "</div></div>";
-
-            $stu_form .= "<div class='row'>";
-            $stu_form .= "<div class='col'>";
-            $stu_form .= "<table class='table table-light table-borderless'>";
-            $stu_form .= "<tr><th>Student Name</th><th>Score/Marks</th></th>";
-            foreach ($data as $row) {
-              $stu_form .= "<tr>";
-              $stu_form .= "<td><input type='hidden' name='student[]' value='" . $row["studentName"] . "'>" . $row["studentName"] . "</td>";
-              $stu_form .= "<td><input type='text' class='form-control' name='marks[]'></td>";
-              $stu_form .= "</tr>";
-            }
-            $stu_form .= "</table>";
-            $stu_form .= "</div></div>";
-
-            $stu_form .= "<button type='submit' class='register btn btn-info' name='grade'>Submit grades</button>";
-            $stu_form .= "</form>";
-            echo $stu_form;
-          }
-        }
-
-        
-        ?>
 
       </div>
     </div>
@@ -203,22 +163,83 @@ include "../settings/connection.php";
 
 
 
+    $(document).ready(function () {
+      $('#navform').submit(function (e) {
+        e.preventDefault(); 
 
-    $("#preview").on("click", function () {
-      // Display the chore form container as a modal
-      $("#previewForm").css("display", "block");
-      // Reset the rowIndex in dataset
-      $("#previewSubmit").data("rowIndex", "");
-      // Clear input field
-      // $("#choreName").val(""); // Clear input field
+       
+        var className = $('#classname').val();
+        var termName = $('#termname').val();
+        var subject = $('#subject').val();
+        var assessment = $('#assessment').val();
+
+        if (className === '' || termName === '' || subject === '' || assessment === '') {
+         
+          Swal.fire({
+            icon: 'error',
+            title: 'Sorry...',
+            text: 'Please fill in all fields!'
+          });
+          return;
+        }
+
+        
+        $.ajax({
+          url: '../action/grade_form_action.php', 
+          type: 'POST',
+          data: $(this).serialize(),
+
+          success: function (response) {
+            $('.content').html(response);
+            $('#gradeForm').submit(function (e) {
+              e.preventDefault(); 
+              var formData = $(this).serialize();
+
+            
+              $.ajax({
+                url: '../action/grade_action.php', 
+                type: 'POST',
+                data: formData,
+                dataType: 'json', 
+                success: function (response) {
+                  if (response.success) {
+                  
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Success!',
+                      text: response.message, 
+                      onClose: () => {
+                        $('.content').empty();
+                    }
+                    });
+                  } else {
+                    
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: response.message,
+                    });
+                  }
+                },
+                error: function (xhr, status, error) {
+               
+                  console.error('Error submitting second form via AJAX: ' + error);
+                }
+              });
+            });
+          }
+        });
+      });
     });
 
-    // Close Form Button Click Event
-    $("#stopPreview").on("click", function () {
-      // Hide the chore form container
-      $("#previewForm").css("display", "none");
-    });
+
   </script>
+
+
+
+
+
+
 </body>
 
 </html>

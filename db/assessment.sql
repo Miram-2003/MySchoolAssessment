@@ -26,11 +26,14 @@ CREATE TABLE Teacher (
 );
 
 -- Table: Subject
-CREATE TABLE Subject (
+CREATE TABLE Subjects (
     subjectID INT PRIMARY KEY AUTO_INCREMENT,
     subjectName VARCHAR(255)
    
 );
+
+INSERT INTO Subjects (subjectName) VALUES ('History'), ('English Lang.'), ('R.M.E'), ('Career Tech.'), ('Int. Science'), ('Mathematics');
+
 
 CREATE TABLE Term (
     termID INT PRIMARY KEY AUTO_INCREMENT,
@@ -43,13 +46,14 @@ INSERT INTO Term (termName) VALUES ('Term 1'), ('Term 2'), ('Term 3');
 -- Table: Assessment
 CREATE TABLE Assessment (
     assessmentID INT PRIMARY KEY AUTO_INCREMENT,
+    assessmentName VARCHAR(255),
     studentID INT,
     subjectID INT,
     termID INT,
     score INT,
     teacherID INT,
     FOREIGN KEY (studentID) REFERENCES Student(studentID),
-    FOREIGN KEY (subjectID) REFERENCES Subject(subjectID),
+    FOREIGN KEY (subjectID) REFERENCES Subjects(subjectID),
     FOREIGN KEY (termID) REFERENCES Term(termID),
     FOREIGN KEY (teacherID) REFERENCES Teacher(teacherID)
 );

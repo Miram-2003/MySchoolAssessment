@@ -55,6 +55,9 @@
            border: white;
            border-radius: 5px;
         }
+        .error{
+            color: red;
+        }
     </Style>
 
 </head>
@@ -79,9 +82,9 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
                         </div>
-                        <input type="text" name="fname" class="form-control" placeholder="Enter your name"
-                            pattern="[A-Z- a-z]{2,}" required>
+                        <input type="text" name="fname" class="form-control" placeholder="Enter your name" id='fname' required>
                     </div>
+                    <span id="fnameError" class="error"></span>
                 </div>
 
                 <div class="form-group">
@@ -90,9 +93,9 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
                         </div>
-                        <input type="text" name="lname" class="form-control" placeholder="Enter your last name"
-                            pattern="[A-Z- a-z]{2,}" required>
+                        <input type="text" name="lname" class="form-control" id='lname'  placeholder="Enter your last name" required>
                     </div>
+                    <span id="lnameError" class="error"></span>
                 </div>
 
                 <div class="form-group">
@@ -101,9 +104,9 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
                         </div>
-                        <input type="tel" name="contact" class="form-control" placeholder="0509534568" required
-                            pattern="[0-9 ()+-]{10,}">
+                        <input type="tel" name="contact" class="form-control" id='contact' placeholder="0509534568" required>
                     </div>
+                    <span id="cError" class="error"></span>
                 </div>
 
                 <div class="form-group">
@@ -112,10 +115,9 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
                         </div>
-                        <input type="email" name="email" class="form-control" placeholder="name@example.com" required
-                            pattern="[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}">
+                        <input type="email" name="email" class="form-control" id='email' placeholder="name@example.com" required>
                     </div>
-
+                    <span id="emailError" class="error"></span>
                 </div>
 
                 <div class="form-group">
@@ -125,10 +127,9 @@
                             <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
                         </div>
                         <input type="password" name="password" id="password" class="form-control"
-                            placeholder="Enter a password"
-                            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}" required>
+                            placeholder="Enter a password"  required>
                     </div>
-
+                    <span id="passwordError" class="error"></span>
                 </div>
 
                 <div class="form-group">
@@ -164,6 +165,7 @@
         event.preventDefault(); // Prevent default form submission
 
         // Create FormData object to serialize form data
+        if(validateForm()){
         var formData = new FormData(this);
 
         // Send AJAX request
@@ -195,7 +197,70 @@
         .catch(error => {
         console.error('Error:', error);
         });
-    }); 
+    }
+}); 
+
+
+
+// validate data
+    function validateForm() {
+            var fname = document.getElementById('fname').value;
+            var lname = document.getElementById('lname').value;
+            var contact = document.getElementById('contact').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            var fnameError = document.getElementById('fnameError');
+            var lnameError = document.getElementById('lnameError');
+            var contactError = document.getElementById('cError');
+            var emailError = document.getElementById('emailError');
+            var passwordError = document.getElementById('passwordError');
+            var confirmPasswordError = document.getElementById('confirmPasswordError');
+
+            var isValid = true;
+
+        
+            if (!/^[A-Za-z]{2,}$/.test(fname)) {
+                fnameError.textContent = "First name must contain at least 2 letters and only alphabets";
+                isValid = false;
+            } else {
+                fnameError.textContent = "";
+            }
+
+    
+            if (!/^[A-Za-z]{2,}$/.test(lname)) {
+                lnameError.textContent = "Last name must contain at least 2 letters and only alphabets";
+                isValid = false;
+            } else {
+                lnameError.textContent = "";
+            }
+
+           
+            if (!/^[0-9 ()+-]{10,}$/.test(contact)) {
+                contactError.textContent = "Invalid contact number";
+                isValid = false;
+            } else {
+                contactError.textContent = "";
+            }
+
+           
+            if (!/^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(email)) {
+                emailError.textContent = "Invalid email address";
+                isValid = false;
+            } else {
+                emailError.textContent = "";
+            }
+
+            if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}/.test(password)) {
+                passwordError.textContent = "Password must contain at least 8 characters, including uppercase, lowercase, numbers, and special characters";
+                isValid = false;
+            } else {
+                passwordError.textContent = "";
+            }
+
+        return isValid;
+        }
 </script>
 </body>
 </html>

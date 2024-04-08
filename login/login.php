@@ -64,11 +64,13 @@
 
         <h5 class="text-center"><em>Student Assessment Portal</em></h5>
     </div>
+
     <div class="container">
         <div class="box">
             <form action="../action/login-action.php" method="post" id='loginForm'>
                 <div>
                     <h4 class="text-center p-2">LogIn</h4>
+
                     <div>
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -79,6 +81,8 @@
                                 <input type="email" name="email" class="form-control" required title='Enter your email'>
                             </div>
                         </div>
+
+                        
                         <div class="form-group">
                             <label for="password">Password</label>
                             <div class="input-group">
@@ -97,7 +101,7 @@
                         </div>
 
                         <div class="text-center">
-                            <h6 class="m-3"><em>Don't have an account? <a href="../login/login.php">Signup here</a></em>
+                            <h6 class="m-3"><em>Don't have an account? <a href="../login/register.php">Signup here</a></em>
                             </h6>
                         </div>
             </form>

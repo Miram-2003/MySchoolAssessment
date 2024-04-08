@@ -56,7 +56,7 @@ function change_student($number, $name){
 function change_student_class($number, $name){
     global $con;
 
-    $student_query="UPDATE `Student` SET `classID`=? WHERE `studentID`= ?";
+    $student_query="UPDATE `student` SET `classID`=? WHERE `studentID`= ?";
     $student_query = $con->prepare($student_query);
     $student_query->bind_param("ii", $name, $number);
     $result =$student_query->execute();
@@ -66,6 +66,30 @@ function change_student_class($number, $name){
 
 
 
+function get_all_subject($con){
+    $class_query = "SELECT * FROM `subjects`";
+    $class_execute = $con->query($class_query);
+    if ($class_execute) {
+        $result = $class_execute->fetch_all(MYSQLI_ASSOC);
+        return $result;
+    }
+}
+ 
 
-    
+
+function get_a_subjectname($number){
+    global $con;
+
+    $subject_query="SELECT `subjectName` FROM `subjects` WHERE `subjectID` = ?";
+    $subject_query = $con->prepare($subject_query);
+    $subject_query->bind_param("i", $number);
+    $subject_query->execute();
+    $result = $subject_query->get_result(); 
+    if($result){
+        $row=$result->fetch_assoc();
+        $classname = $row['subjectName'];
+       return $classname;
+    }
+
+}
 ?>

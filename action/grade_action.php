@@ -3,45 +3,37 @@ include "../settings/connection.php";
 
 session_start();
 
+$term = $_SESSION["term"];
+$class = $_SESSION["class"];
+$subject = $_SESSION["subject"];
+$assessment = $_SESSION["assessment"];
+$user = $_SESSION["user_id"];
 
-if (!isset($_POST["grade"])) {
-    header("Location:../view/assign grade.php");
-} else {
+$students = $_POST["student"];
+$grades = $_POST["marks"];
+// Initialize an empty associative array to store student grades
+$studentGrades = array();
+foreach ($students as $index => $studentName) {
 
-    $term = $_SESSION["term"];
-    $class = $_SESSION["class"];
-    $subject = $_SESSION["subject"];
-    $assessment = $_SESSION["assessment"];
-    
+    if (isset($grades[$index])) {
 
-    $students = $_POST["student"];
-    $grades = $_POST["marks"];
+        $grade = $grades[$index];
 
-    // Initialize an empty associative array to store student grades
-
-    $studentGrades = array();
-
-
-    foreach ($students as $index => $studentName) {
-
-        if (isset($grades[$index])) {
-
-            $grade = $grades[$index];
-
-            $studentGrades[$studentName] = $grade;
-        }
+        $studentGrades[$studentName] = $grade;
     }
-  
-    foreach($studentGrades as $studentName => $grade){
-        $grade_query = "INSERT INTO `assessment`(`assessmentID`, `studentID`, `subjectID`, `termID`, `score`, `teacherID`)
-         VALUES ('',$studentName, 1, $term, $grade,1)";
-        $grade_exe = $con->query($grade_query);
-        if($grade_exe){
-            header("Location:../view/assign grade.php");
-        }else{
-            echo "sorry something when wrong";
-        }
-    }
-    
 }
+
+foreach ($studentGrades as $studentName => $grade) {
+    $grade_query = "INSERT INTO `assessment`(`assessmentName`, `studentID`, `subjectID`, `termID`, `score`, `teacherID`) 
+    VALUES ('$assessment', $studentName, $subject, $term, $grade, $user)";
+    $grade_exe = $con->query($grade_query);
+}
+if ($grade_exe) {
+    echo json_encode(['success' => true, 'message' => 'Grades recorded successful!']);
+} else {
+    echo json_encode(['success' => false, 'message' => 'sorry something went wrong']);
+}
+
+
+
 ?>

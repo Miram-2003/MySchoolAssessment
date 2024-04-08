@@ -14,7 +14,7 @@ $email = $password = "";
         $query->bind_param("s", $email);
         $query->execute();
         $result = $query->get_result();
-        if($result->num_rows){
+        if($result->num_rows>0){
             $row=$result->fetch_assoc();
             if (!password_verify($password, $row["teacherPwd"])) {
 
@@ -28,7 +28,7 @@ $email = $password = "";
             }
            
     }else{
-        echo json_encode(['success' => false, 'message' => 'login failed! Please try again.']);
+        echo json_encode(['success' => false, 'message' => 'This account is not registered']);
     }
 }
 
