@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-
-
     <title>Login</title>
+    
     <style>
         body {
             background: whitesmoke;
         }
 
         .box {
-
             width: 550px;
             margin-left: 40%;
             overflow-y: 10px;
@@ -108,8 +103,43 @@
             </form>
         </div>
     </div>
+<script>
+    
+    // Handling form submission
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Preventing default form submission
 
-    <script scr="../js/login.js"></script>
+        // Create FormData object to serialize form data
+        var formData = new FormData(this);
+
+        // Send AJAX request
+        fetch('../action/login-action.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Check login status and show SweetAlert
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: data.message,
+                    onClose: () => {
+                        // Redirect to the desired page
+                        window.location.href = '../view/class_view.php';
+                    }
+                });
+            } else {
+                document.getElementById('passwordError').innerText = data.message;
+
+             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
+ 
 
 </body>
 </html>
