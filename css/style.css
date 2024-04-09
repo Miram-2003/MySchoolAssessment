@@ -41,8 +41,9 @@ background-position-x: 450px;
 
   margin-top: 90px;
 
- padding-left: 10px; 
+padding-left: 10px; 
 padding-right: 20px; 
+
 
 }
 
@@ -117,4 +118,7 @@ hr.h-color {
     float: right;
     
     
+  }
+.container{
+  border-radius: 10px !important;
   }

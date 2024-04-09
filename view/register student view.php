@@ -1,6 +1,7 @@
 <?php
+
 include "../functions/class.php";
-session_start()
+
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +12,8 @@ session_start()
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/cb76afc7c2.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/cb76afc7c2.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <link href="../css/style.css" rel="stylesheet" />
   <title>Document</title>
 
@@ -72,7 +75,7 @@ session_start()
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
 
-      <form class="container-fluid justify-content-evenly" method="post">
+      <form class="container-fluid justify-content-evenly" method="post" id='registerform'>
         <h5><b>Select a class </b></h5>
 
         <select name="student_class" id="student_class" style="width:200px;">
@@ -98,32 +101,7 @@ session_start()
 
 
     <div class="content">
-      <?php
-      $className = $classNumber = "";
-      if (isset($_POST["submit"])) {
-        $classid = $_POST["student_class"];
-        $classNumber = $_POST["classNumber"];
-
-        $result = get_a_classname($classid);
-        $classForm = "<form action='../action/register_student_action.php' method='post'>";
-        $classForm .= "<input type='hidden' name ='stage' value='" . $result . "'>";
-        $classForm .= "<h3 class='text-center'><b>Class: " . $result . "</b></h3>";
-        for ($i = 0; $i < $classNumber; $i++) {
-          $classForm .= "<div class='form-group'>";
-          $classForm .= "<label class='form-label' for='studentName" . ($i + 1) . "'>Name of student " . ($i + 1) . "</label>";
-          $classForm .= "<input type='text' class='form-control form-control-sm' id='studentName" . ($i + 1) . "' name='input[]'>";
-          $classForm .= "</div>";
-        }
-        
-        $classForm .= "<button type='submit' class='register btn btn-info' name='registerStudent'>Register</button>";
-        $classForm .= "<button type='submit' class='register btn btn-secondary' name='registerPreview'>Preview</button>";
-        $classForm .= "</form>";
-        echo $classForm;
-      } elseif(isset($_POST["submit"])){
-        
-      }
-      ?>
-
+     
 
     </div>
   </div>
@@ -133,6 +111,8 @@ session_start()
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="../js/sidebar.js"></script>
+    <script src="../js/student_register.js"></script>
+  
 </body>
 
 </html>

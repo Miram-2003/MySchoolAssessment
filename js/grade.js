@@ -20,7 +20,7 @@ $(document).ready(function () {
 
       
       $.ajax({
-        url: '../action/grade_form_action.php', 
+        url: '../view/grade_form_action.php', 
         type: 'POST',
         data: $(this).serialize(),
 

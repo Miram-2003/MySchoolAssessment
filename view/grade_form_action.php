@@ -56,7 +56,7 @@ if ($query_excuted->num_rows > 0) {
     $stu_form .= "<table class='table table-primary table-striped-columns table-borderless'>";
     $stu_form .= "<tr><th>Class:</th><th>" . $classname . "</th></tr>";
     $stu_form .= "<tr><th>Term:</th><th>" . $termname . "</th></tr>";
-    $stu_form .= "<tr><th>Subject:</th><th>" . $subject . "</th></tr>";
+    $stu_form .= "<tr><th>Subject:</th><th>" . $subjectname . "</th></tr>";
     $stu_form .= "<tr><th>Assessment Name:</th><th>" . $assessment . "</th></tr>";
     $stu_form .= "</table>";
     $stu_form .= "</div></div>";
