@@ -28,8 +28,8 @@ $(document).ready(function () {
                   icon: "success",
                   title: "Success!",
                   text: response.message,
-                  onClose: () => {
-                    $(".content").empty();
+                  onClose: () => { 
+                   Window.history.back()
                   },
                 });
               } else {

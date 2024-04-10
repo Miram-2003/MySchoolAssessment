@@ -115,7 +115,15 @@ include "../functions/students.php"
 
 
           <lable for="assessment"><b>Assessment Name</b></lable>
-          <input type="input" name="assessment" id="assessment">
+          <select name="assessment" id="subject">
+            <option> </option>
+            <?php
+            $result = get_all_assessment($con);
+            foreach ($result as $row) {
+              echo "<option value=" . $row['assessmentID'] . ">" . $row["assessmentName"] . "</option>";
+            }
+            ?>
+          </select>
 
 
           <button type="submit" name="submitAssessment" id="pen-btn"

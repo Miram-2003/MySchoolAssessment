@@ -12,6 +12,7 @@ $assessment = $_POST["assessment"];
 $classname = get_a_classname($class);
 $termname = get_a_termname($term);
 $subjectname = get_a_subjectname($subject);
+$assessmentname= get_an_assessmentname($assessment);
 
 $query = "SELECT * FROM `student` WHERE `classID` = ?";
 $query_prepare = $con->prepare($query);
@@ -29,7 +30,7 @@ if ($query_excuted->num_rows > 0) {
     $stu_form .= "<tr><th>Class:</th><th>" . $classname . "</th></tr>";
     $stu_form .= "<tr><th>Term:</th><th>" . $termname . "</th></tr>";
     $stu_form .= "<tr><th>Subject:</th><th>" . $subjectname . "</th></tr>";
-    $stu_form .= "<tr><th>Assessment Name:</th><th>" . $assessment . "</th></tr>";
+    $stu_form .= "<tr><th>Assessment Name:</th><th>" . $assessmentname . "</th></tr>";
     $stu_form .= "</table>";
     $stu_form .= "</div></div>";
 

@@ -67,10 +67,10 @@ function change_student_class($number, $name){
 
 
 function get_all_subject($con){
-    $class_query = "SELECT * FROM `subjects`";
-    $class_execute = $con->query($class_query);
-    if ($class_execute) {
-        $result = $class_execute->fetch_all(MYSQLI_ASSOC);
+    $subject_query = "SELECT * FROM `subjects`";
+    $subject_execute = $con->query($subject_query);
+    if ($subject_execute) {
+        $result = $subject_execute->fetch_all(MYSQLI_ASSOC);
         return $result;
     }
 }
@@ -87,8 +87,37 @@ function get_a_subjectname($number){
     $result = $subject_query->get_result(); 
     if($result){
         $row=$result->fetch_assoc();
-        $classname = $row['subjectName'];
-       return $classname;
+        $subjectname = $row['subjectName'];
+       return $subjectname;
+    }
+
+}
+
+
+
+
+function get_all_assessment($con){
+    $assess_query = "SELECT * FROM `assessment`";
+    $assess_execute = $con->query($assess_query);
+    if ($assess_execute) {
+        $result = $assess_execute->fetch_all(MYSQLI_ASSOC);
+        return $result;
+    }
+}
+
+
+function get_an_assessmentname($number){
+    global $con;
+
+    $assess_query="SELECT `assessmentName` FROM `assessment` WHERE `assessmentID` = ?";
+    $assess_query = $con->prepare($assess_query);
+    $assess_query->bind_param("i", $number);
+    $assess_query->execute();
+    $result = $assess_query->get_result(); 
+    if($result){
+        $row=$result->fetch_assoc();
+        $assessname = $row['assessmentName'];
+       return $assessname;
     }
 
 }
