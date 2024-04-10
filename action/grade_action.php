@@ -25,7 +25,7 @@ foreach ($students as $index => $studentName) {
 
 foreach ($studentGrades as $studentName => $grade) {
     $grade_query = "INSERT INTO `assessment`(`assessmentName`, `studentID`, `subjectID`, `termID`, `score`, `teacherID`) 
-    VALUES ('$assessment', $studentName, $subject, $term, $grade, $user)";
+    VALUES ('$assessment', '$studentName', '$subject', '$term', '$grade', '$user')";
     $grade_exe = $con->query($grade_query);
 }
 if ($grade_exe) {

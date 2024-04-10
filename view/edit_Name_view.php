@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
             $forms .= "<b><label for='StudentName'>Student Name</label></b>";
             $forms .= "<input type='text' class='form-control' id='StudentName' name='StudentName' value='" . $rows["studentName"] . "'>";
             $forms .= "<button type='submit' name='nameSubmit' class='register btn btn-primary'>Apply changes</button>";
-            $forms .= "<button type='button' class='register btn btn-secondary' >Cancel</button><br>";
+            $forms .= "<button type='button'onclick='history.back()' class='register btn btn-secondary' >Cancel</button><br>";
             $forms .= "<br><br>";
             $forms .= "</div>";
             $forms .= "</form>";
