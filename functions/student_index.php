@@ -17,7 +17,7 @@ function grade($classid, $assessmentid, $termid, $subjectid, $year)
     $grades = []; // Initialize an empty array to store grades
 
     if ($students->num_rows === 0) {
-        return "there is no student in the class";
+        return "There is no student registered in this class";
     } else {
         $result = $students->fetch_all(MYSQLI_ASSOC);
         foreach ($result as $row) {
@@ -32,12 +32,35 @@ function grade($classid, $assessmentid, $termid, $subjectid, $year)
             }
 
 
-
         }
         return $grades;
     }
 
 }
+
+
+
+
+function get_grade($id){
+    global $con;
+    $sql ="SELECT `score` FROM `grade` WHERE `gradeID` = $id";
+    $sql_exe = $con->query($sql);
+    return $sql_exe;
+}
+
+
+function change_grade($id, $newscore){
+    global $con;
+    
+    $grade_query="UPDATE `grade` SET `score`=? WHERE `gradeID`= ?";
+    $grade_query = $con->prepare($grade_query);
+    $grade_query->bind_param("ii", $newscore, $id);
+    $result =$grade_query->execute();
+    return $result;
+
+}
+
+
 
 
 ?>

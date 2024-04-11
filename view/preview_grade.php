@@ -21,9 +21,6 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
 
     if ($assessmentid != 5) {
         $class_assessment = grade($classid, $assessmentid, $termid, $subjectid,$academicyear);
-
-       
-
             $stu_form = "<div class='container'>";
             $stu_form .= "<div class='row'>";
             $stu_form .= "<div class='col'>";
@@ -35,7 +32,18 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
             $stu_form .= "<tr><th>Academic Year:</th><th>" . $academicyear . "</th></tr>";
             $stu_form .= "</table>";
             $stu_form .= "</div></div>";
-            if (!empty($class_assessment)) {
+            if (is_string($class_assessment)) {
+                $stu_form.="<div class='text-center'>";
+                $stu_form .= "<h5  style='color:red; font-size:x-large; font-weight:bold;'>!!!".$class_assessment."<h5>";
+               $stu_form.="<button><strong><a class='text-decoration-none' href = '../view/register student view.php'>Register Student</a></strong></button></div>";
+                echo $stu_form;
+            }elseif(is_array($class_assessment) && empty($class_assessment)){
+                $stu_form.= "<div class='text-center'>";
+                $stu_form .= "<h3  style='color:red; font-size:x-large; font-weight:bold;'>No assessment has been done</h3>";
+                $stu_form.="<button><strong><a class='text-decoration-none' href = '../view/assign grade.php'>Record grades</a></strong></button></div>";
+                echo $stu_form;
+            }else{
+
             $stu_form .= "<div class='row'>";
             $stu_form .= "<div class='col'>";
             $stu_form .= "<table class='table table-light table-bordered'>";
@@ -48,7 +56,7 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
                     $stu_form .= "<td>" . $student . "</td>";
                     $stu_form .= "<td>" . $grade["score"] . "</td>";
                     $stu_form .= "<td>
-                    <button class='edit btn btn-info' data-student-id='" . $grade['studentID'] . "' data-action-name='editclass'>Change Score</button>
+                    <button class='edit btn btn-info' data-grade-id='" . $grade['studentID'] . "'>Change Score</button>
                     <button class='delete btn btn-danger' data-student-id='" . $grade['studentID'] . "'>Remove Score</button>
                     </td>";
                     $stu_form .= "</tr>";
@@ -57,14 +65,10 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
             }
             $stu_form .= "</table>";
             $stu_form .= "</div></div>";
+            echo $stu_form;
 
-            // $stu_form .= "<button type='submit' class='register btn btn-info' name='grade'>Submit grades</button>";
-            //$stu_form .= "</form>";
-            echo $stu_form;
-        }else{
-            $stu_form .= "<h5>No assessment has been done</h5>";
-            echo $stu_form;
-        }
+        }            
+       
 
     } elseif ($assessmentid == 5) {
        
