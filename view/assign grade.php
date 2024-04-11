@@ -35,8 +35,10 @@ include "../functions/students.php"
               class="fa-solid fa-users" style="color: #74C0FC;"></i> Register Student</a></li>
         <li class=""><a href="../view/assign grade.php" class="text-decoration-none px-3 py-2 d-block"><i
               class="fa-solid fa-file-pen" style="color: #74C0FC;"></i> Record Assessment</a></li>
-        <li class=""><a href="../view/view_recorded_grades.php" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-users-viewfinder"
-              style="color: #74C0FC;"></i>View Assessment Record</a></li>
+        <li class=""><a href="../view/view_recorded_grades.php" class="text-decoration-none px-3 py-2 d-block"> <i
+              class="fa-solid fa-users-viewfinder" style="color: #74C0FC;"></i>View Assessment Record</a></li>
+        <li class=""><a href="../view/view_student_report.php" class="text-decoration-none px-3 py-2 d-block"> <i
+              class="fa-solid fa-users-viewfinder" style="color: #74C0FC;"></i>View Student Reports</a></li>
       </ul>
 
       <hr class="h-color mx-2">
@@ -154,7 +156,7 @@ include "../functions/students.php"
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="../js/sidebar.js"></script>
-<script src="../js/grade.js"></script>
+  <script src="../js/grade.js"></script>
 
 
 

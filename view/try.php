@@ -76,24 +76,21 @@ session_start();
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
 
-      <form class="container-fluid justify-content-evenly" method="post" id='navform' name='navform'>
-        <div class="container-fluid justify-content-evenly">
+      <form class="container-fluid justify-content-evenly" method="post" id='navform'>
+        <h5><b>Select a class </b></h5>
 
+        <select name="student_class" id="student_class" style="width:200px;">
+          <option> </option>
+          <?php
+          $result = get_all_class($con);
 
-        <lable for="classname"><b>Class Name</b></lable>
-          <select name="classname" id="classname" style="width:200px;">
-            <option> </option>
-            <?php
-            $result = get_all_class($con);
+          foreach ($result as $row) {
+            echo "<option value=" . $row['classID'] . ">" . $row["className"] . "</option>";
+          }
+          ?>
+        </select>
 
-            foreach ($result as $row) {
-              echo "<option value=" . $row['classID'] . ">" . $row["className"] . "</option>";
-            }
-            ?>
-          </select>
-
-
-          <lable for="classterm"><b>Term</b></lable>
+        <h5><b>Term</b></h5>
           <select name="termname" id="termname">
             <option> </option>
             <?php
@@ -103,47 +100,15 @@ session_start();
             }
 
             ?>
-           
           </select>
 
-
-          <label for='students'><b> Suject Name</b> </label>
-          <select name="subject" id="subject">
-            <option> </option>
-            <?php
-            $result = get_all_subject($con);
-            foreach ($result as $row) {
-              echo "<option value=" . $row['subjectID'] . ">" . $row["subjectName"] . "</option>";
-            }
-            ?>
-             
-          </select>
-
-
-
-          <lable for="assessment"><b>Assessment Name</b></lable>
-          <select name="assessment" id="assessment">
-            <option> </option>
-            <?php
-            $result = get_all_assessment($con);
-            foreach ($result as $row) {
-              echo "<option value=" . $row['assessmentID'] . ">" . $row["assessmentName"] . "</option>";
-            }
-            ?>
-            <option value='5'> All</option>
-          </select><br>
-          <div style ='margin-top:10px;'>
-          <lable for="assessment"><b>Academic Year</b></lable>
+          <h5><b>Academic year </b></h5>
           <input type='text' name='year' id='year'>
-          </div>
 
-
-          <button type="submit" name="submitAssessment" id="pen-btn"
-            class="register btn btn-lg btn-info btn-outlin-dark" type="button" >Done</button>
+        <button type="submit" name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Done</button>
       </form>
-  </div>
 
-  </nav>
+    </nav>
 
 
 
@@ -165,7 +130,7 @@ session_start();
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="../js/sidebar.js"></script>
-  <script src="../js/preview_grade.js"></script>
+  <script src="../js/report.js"></script>
 
 </body>
 

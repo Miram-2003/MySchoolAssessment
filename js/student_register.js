@@ -15,8 +15,8 @@ $(document).ready(function () {
             return;
         }
 
-        // Validate classNumber to contain only digits
-        var classNumberPattern = /^\d+$/; // Regular expression to match one or more digits
+       
+        var classNumberPattern = /^\d+$/; 
         if (!classNumberPattern.test(classNumber)) {
             Swal.fire({
                 icon: 'error',
@@ -26,7 +26,7 @@ $(document).ready(function () {
             return;
         }
         
-        // Proceed with submitting the form data
+       
         $.ajax({
             url: "../view/registerform.php",
             type: "POST",
@@ -40,13 +40,12 @@ $(document).ready(function () {
         });
     });
 
-    // Form submission for registering student names
     $(document).ready(function () {
       $('#formsubmit').submit(function (e) {
           e.preventDefault();
           var formData = $(this).serialize();
           
-          // Validation
+       
           var isValid = true;
           $(this).find('input[type="text"]').each(function() {
               var studentName = $(this).val().trim();

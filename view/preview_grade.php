@@ -19,7 +19,7 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
     $academicyear = $_POST["year"];
 
 
-    if ($assessmentid != 5) {
+    if ($assessmentid != 6) {
         $class_assessment = grade($classid, $assessmentid, $termid, $subjectid,$academicyear);
             $stu_form = "<div class='container'>";
             $stu_form .= "<div class='row'>";
@@ -70,7 +70,7 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
         }            
        
 
-    } elseif ($assessmentid == 5) {
+    } elseif ($assessmentid == 6) {
        
 
         $table = "<div class='container'>";
