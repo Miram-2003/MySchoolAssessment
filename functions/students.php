@@ -121,4 +121,22 @@ function get_an_assessmentname($number){
     }
 
 }
+
+function get_an_studendentname($number){
+    global $con;
+
+    $student_query="SELECT `studentName` FROM `student` WHERE `studentID` = ?";
+    $student_query = $con->prepare($student_query);
+    $student_query->bind_param("i", $number);
+    $student_query->execute();
+    $result = $student_query->get_result(); 
+    if($result){
+        $row=$result->fetch_assoc();
+        $studentname = $row['studentName'];
+       return $studentname;
+    }
+
+}
+
+
 ?>

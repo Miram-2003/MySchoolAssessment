@@ -38,7 +38,7 @@ include "../functions/class.php";
               style="color: #74C0FC;"></i> Register Student</a></li>
         <li class=""><a href="../view/assign grade.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-file-pen"
               style="color: #74C0FC;"></i> Record Assessment</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-users-viewfinder"
+        <li class=""><a href="../view/view_recorded_grades.php" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-users-viewfinder"
               style="color: #74C0FC;"></i>View Assessment Record</a></li>
       </ul>
 

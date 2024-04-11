@@ -2,6 +2,7 @@
 include "../functions/class.php";
 
 include "../settings/connection.php";
+include "../functions/students.php";
 session_start();
 ?>
 
@@ -13,6 +14,8 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/cb76afc7c2.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <link href="../css/style.css" rel="stylesheet" />
   <title>Document</title>
 
@@ -73,13 +76,12 @@ session_start();
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
 
-      <form class="container-fluid justify-content-evenly" method="post">
+      <form class="container-fluid justify-content-evenly" method="post" id='navform' name='navform'>
         <div class="container-fluid justify-content-evenly">
 
 
-          <!-- <h5><b>Change student'second class/ name</b></h5> -->
-          <lable for="classname">Class Name</lable>
-          <select name="classname" id="student_class" style="width:200px;">
+        <lable for="classname"><b>Class Name</b></lable>
+          <select name="classname" id="classname" style="width:200px;">
             <option> </option>
             <?php
             $result = get_all_class($con);
@@ -91,28 +93,53 @@ session_start();
           </select>
 
 
-          <lable for="classterm">Term</lable>
-          <select name="termname" id="student_class">
+          <lable for="classterm"><b>Term</b></lable>
+          <select name="termname" id="termname">
             <option> </option>
             <?php
             $result = get_all_term($con);
             foreach ($result as $row) {
               echo "<option value=" . $row['termID'] . ">" . $row["termName"] . "</option>";
             }
+
             ?>
+           
           </select>
 
 
           <label for='students'><b> Suject Name</b> </label>
-          <input type="input" name="subject" id="subject">
+          <select name="subject" id="subject">
+            <option> </option>
+            <?php
+            $result = get_all_subject($con);
+            foreach ($result as $row) {
+              echo "<option value=" . $row['subjectID'] . ">" . $row["subjectName"] . "</option>";
+            }
+            ?>
+             
+          </select>
 
-          <lable for="assessment">Assessment Name</lable>
-          <input type="input" name="assessment" id="subject">
-          <!-- <input type='text' name='classNumber' id='student'> -->
 
 
-          <button type="submit" name="submitAssessment" class="register btn btn-lg btn-info btn-outlin-dark"
-            type="button">Done</button>
+          <lable for="assessment"><b>Assessment Name</b></lable>
+          <select name="assessment" id="assessment">
+            <option> </option>
+            <?php
+            $result = get_all_assessment($con);
+            foreach ($result as $row) {
+              echo "<option value=" . $row['assessmentID'] . ">" . $row["assessmentName"] . "</option>";
+            }
+            ?>
+            <option value='5'> All</option>
+          </select><br>
+          <div style ='margin-top:10px;'>
+          <lable for="assessment"><b>Academic Year</b></lable>
+          <input type='text' name='year' id='year'>
+          </div>
+
+
+          <button type="submit" name="submitAssessment" id="pen-btn"
+            class="register btn btn-lg btn-info btn-outlin-dark" type="button" >Done</button>
       </form>
   </div>
 
@@ -124,67 +151,7 @@ session_start();
   <div class="content" style='padding-top:50px' ;>
     <div class="container">
       <div class="row justify-content-center">
-        <?php
-     
-        if (!isset($_POST["submitAssessment"])) {
-          exit();
-        } else {
-          $term = $_POST["termname"];
-          $class = $_POST["classname"];
-          $subject = $_POST["subject"];
-          $assessment = $_POST["assessment"];
-          $classname = get_a_classname($class);
-          $termname = get_a_termname($term);
-
-          $query = "SELECT * FROM `student` WHERE `classID` = ?";
-          $query_prepare = $con->prepare($query);
-          $query_prepare->bind_param("i", $class);
-          $query_prepare->execute();
-          $query_excuted = $query_prepare->get_result();
-          if ($query_excuted) {
-            $data = $query_excuted->fetch_all(MYSQLI_ASSOC);
-
-            $stu_form = "<form action='../action/grade_action.php' method ='post'>";
-            $stu_form .= "<div class='container'>";
-            $stu_form .= "<div class='row'>";
-            $stu_form .= "<div class='col'>";
-            $stu_form .= "<table class='table table-primary table-striped-columns table-borderless'>";
-            $stu_form .= "<tr><th>Class:</th><th>" . $classname . "</th></tr>";
-            $stu_form .= "<tr><th>Term:</th><th>" . $termname . "</th></tr>";
-            $stu_form .= "<tr><th>Subject:</th><th>" . $subject . "</th></tr>";
-            $stu_form .= "<tr><th>Assessment Name:</th><th>" . $assessment . "</th></tr>";
-            $stu_form .= "</table>";
-            $stu_form .= "</div></div>";
-
-            $stu_form .= "<div class='row'>";
-            $stu_form .= "<div class='col'>";
-            $stu_form .= "<table class='table table-light table-borderless'>";
-            $stu_form .= "<tr><th>Student Name</th><th>Score/Marks</th></th>";
-            foreach ($data as $row) {
-              $stu_form .= "<tr>";
-              $stu_form .= "<td><input type='hidden' name='student[]' value='" . $row["studentID"] . "'>" . $row["studentName"] . "</td>";
-              $stu_form .= "<td><input type='text' class='form-control' name='marks[]'></td>";
-              $stu_form .= "</tr>";
-            }
-            $stu_form .= "</table>";
-            $stu_form .= "</div></div>";
-
-            $stu_form .= "<button type='submit' class='register btn btn-info' name='grade'>Submitgrades</button>";
-            $stu_form .= "</form>";
-            echo $stu_form;
-          }
-
-          $_SESSION["term"]= $term;
-          $_SESSION["class"]= $class;
-          $_SESSION["subject"]= $subject;
-          $_SESSION["assessment"]= $assessment;
-        
-          
-        }
-
-        
-        ?>
-
+       
       </div>
     </div>
 
@@ -197,40 +164,9 @@ session_start();
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script>
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/preview_grade.js"></script>
 
-    $(".sidebar ul li").on('click', function () {
-      $(".sidebar ul li.active").removeClass('active');
-      $(this).addClass('active');
-
-    })
-
-    $('.open-btn').on('click', function () {
-      $('.sidebar').addClass('active');
-    })
-
-    $('.close-btn').on('click', function () {
-      $('.sidebar').removeClass('active');
-    })
-
-
-
-
-    $("#preview").on("click", function () {
-      // Display the chore form container as a modal
-      $("#previewForm").css("display", "block");
-      // Reset the rowIndex in dataset
-      $("#previewSubmit").data("rowIndex", "");
-      // Clear input field
-      // $("#choreName").val(""); // Clear input field
-    });
-
-    // Close Form Button Click Event
-    $("#stopPreview").on("click", function () {
-      // Hide the chore form container
-      $("#previewForm").css("display", "none");
-    });
-  </script>
 </body>
 
 </html>

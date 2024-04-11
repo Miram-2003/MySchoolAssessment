@@ -29,7 +29,7 @@ $(document).ready(function () {
                   title: "Success!",
                   text: response.message,
                   onClose: () => { 
-                   Window.history.back()
+                   goBack();
                   },
                 });
               } else {
@@ -55,3 +55,6 @@ $(document).ready(function () {
 });
 
 
+function goBack() {
+  window.history.back()
+}

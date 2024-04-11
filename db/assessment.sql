@@ -55,11 +55,13 @@ INSERT INTO `Assessment` (`assessmentName`) VALUES ('Class test 1 - 20'), ('Clas
 
 
 CREATE TABLE `Grade` (
+    `gradeID` INT PRIMARY KEY AUTO_INCREMENT,
     `assessmentID` INT,
     `studentID` INT,
     `subjectID` INT,
     `termID` INT,
     `score` INT,
+    `year` INT,
     `teacherID` INT,
     FOREIGN KEY (`assessmentID`) REFERENCES `Assessment`(`assessmentID`),
     FOREIGN KEY (`studentID`) REFERENCES `Student`(`studentID`),
@@ -88,6 +90,6 @@ INSERT INTO `Class` (`className`) VALUES
 
 
 --
-ALTER TABLE `Assessment`
+ALTER TABLE `Grade`
   ADD CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `Student` (`studentID`) ON DELETE CASCADE ON UPDATE CASCADE;
 

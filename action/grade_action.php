@@ -8,6 +8,8 @@ $class = $_SESSION["class"];
 $subject = $_SESSION["subject"];
 $assessment = $_SESSION["assessment"];
 $user = $_SESSION["user_id"];
+$currentYear = date("Y");
+
 
 $students = $_POST["student"];
 $grades = $_POST["marks"];
@@ -24,8 +26,8 @@ foreach ($students as $index => $studentName) {
 }
 
 foreach ($studentGrades as $studentName => $grade) {
-    $grade_query = "INSERT INTO `assessment`(`assessmentName`, `studentID`, `subjectID`, `termID`, `score`, `teacherID`) 
-    VALUES ('$assessment', '$studentName', '$subject', '$term', '$grade', '$user')";
+    $grade_query = "INSERT INTO `grade`(`assessmentID`, `studentID`, `subjectID`, `termID`, `score`, `year`,`teacherID`) 
+    VALUES ('$assessment', '$studentName', '$subject', '$term', '$grade', $currentYear, '$user')";
     $grade_exe = $con->query($grade_query);
 }
 if ($grade_exe) {
