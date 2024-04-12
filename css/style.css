@@ -63,7 +63,7 @@ hr.h-color {
   color: white;
 }
 
-.sidebar li a {
+.sidebar li a, li {
   color: black;
   font-size: medium;
 }

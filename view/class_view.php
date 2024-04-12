@@ -8,13 +8,13 @@ isLogin()
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/cb76afc7c2.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <link href="../css/style.css" rel="stylesheet" />
-  <title>View a  class/title>
+  <title>View a  class</title>
 
 
 </head>
@@ -29,24 +29,23 @@ isLogin()
       <hr class="h-color mx-2">
 
       <ul class="list-unstyled px-2">
-        <li class=""><a href="../view/home.php" class="text-decoration-none px-3 py-2 d-block"><i
-              class="fa-solid fa-house" style="color: #74C0FC;"></i> Home</a></li>
+       
         <li class=""><a href="../view/class_view.php" class="text-decoration-none px-3 py-2 d-block"> <i
-              class="fa-solid fa-people-group" style="color: #74C0FC;"></i>View Class</a></li>
+              class="fa-solid fa-people-group" style="color: #74C0FC;"></i><b>View Class</b></a></li>
         <li class=""><a href="../view/register student view.php" class="text-decoration-none px-3 py-2 d-block"><i
-              class="fa-solid fa-users" style="color: #74C0FC;"></i> Register Student</a></li>
+              class="fa-solid fa-users" style="color: #74C0FC;"></i><b> Register Student</b></a></li>
         <li class=""><a href="../view/assign grade.php" class="text-decoration-none px-3 py-2 d-block"><i
-              class="fa-solid fa-file-pen" style="color: #74C0FC;"></i> Record Assessment</a></li>
+              class="fa-solid fa-file-pen" style="color: #74C0FC;"></i> <b>Record Assessment</b></a></li>
         <li class=""><a href="../view/view_recorded_grades.php" class="text-decoration-none px-3 py-2 d-block"> <i
-              class="fa-solid fa-users-viewfinder" style="color: #74C0FC;"></i>View Assessment Record</a></li>
+              class="fa-solid fa-users-viewfinder" style="color: #74C0FC;"></i><b>View Assessment Record</b></a></li>
         <li class=""><a href="../view/view_student_report.php" class="text-decoration-none px-3 py-2 d-block"> <i
-              class="fa-solid fa-users-viewfinder" style="color: #74C0FC;"></i>View Student Reports</a></li>
+              class="fa-solid fa-users-viewfinder" style="color: #74C0FC;"></i><b>View Student Reports</b></a></li>
       </ul>
 
       <hr class="h-color mx-2">
       <ul class="list-unstyled px-2">
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i>settings</a></li>
+        <li class=""><a href="../view/view settings.php" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-house"
+              style="color: #74C0FC;"></i><b>Settings</b></a></li>
       </ul>
     </div>
 

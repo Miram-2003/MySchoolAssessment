@@ -31,24 +31,25 @@ session_start();
       </div>
       <hr class="h-color mx-2">
       <ul class="list-unstyled px-2">
-        <li class="active"><a href="../view/home.php" class="text-decoration-none px-3 py-2 d-block"><i
-              class="fa-solid fa-house" style="color: #74C0FC;"></i> Home</a></li>
+       
         <li class=""><a href="../view/class_view.php" class="text-decoration-none px-3 py-2 d-block"> <i
-              class="fa-solid fa-people-group" style="color: #74C0FC;"></i>View Class</a></li>
+              class="fa-solid fa-people-group" style="color: #74C0FC;"></i><b>View Class</b></a></li>
         <li class=""><a href="../view/register student view.php" class="text-decoration-none px-3 py-2 d-block"><i
-              class="fa-solid fa-users" style="color: #74C0FC;"></i> Register Student</a></li>
+              class="fa-solid fa-users" style="color: #74C0FC;"></i><b> Register Student</b></a></li>
         <li class=""><a href="../view/assign grade.php" class="text-decoration-none px-3 py-2 d-block"><i
-              class="fa-solid fa-file-pen" style="color: #74C0FC;"></i> Record Assessment</a></li>
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-users-viewfinder"
-              style="color: #74C0FC;"></i>View Assessment Record</a></li>
+              class="fa-solid fa-file-pen" style="color: #74C0FC;"></i> <b>Record Assessment</b></a></li>
+        <li class=""><a href="../view/view_recorded_grades.php" class="text-decoration-none px-3 py-2 d-block"> <i
+              class="fa-solid fa-users-viewfinder" style="color: #74C0FC;"></i><b>View Assessment Record</b></a></li>
+        <li class=""><a href="../view/view_student_report.php" class="text-decoration-none px-3 py-2 d-block"> <i
+              class="fa-solid fa-users-viewfinder" style="color: #74C0FC;"></i><b>View Student Reports</b></a></li>
       </ul>
-
       <hr class="h-color mx-2">
       <ul class="list-unstyled px-2">
-        <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"> <i class="fa-solid fa-house"
-              style="color: #74C0FC;"></i>settings</a></li>
+        <li class=""><a href="../view/view settings.php" class="text-decoration-none px-3 py-2 d-block"> <i
+              class="fa-solid fa-house" style="color: #74C0FC;"></i><b>Settings</b></a></li>
       </ul>
     </div>
+
 
 
     <nav class="navbar  fixed-top navbar-expand-lg navbar-light bg-light">
@@ -75,24 +76,27 @@ session_start();
     </nav>
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar container-fluid justify-content-evenly">
- 
-      <button  name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Add a class</button>
-      <button  name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Add a subject</button>
-      <button  name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Add an Assessment category</button>
+
+      <button data-action-name='Class Name' name="submit" class="add btn btn-lg btn-info btn-outlin-dark"
+        type="button">Add a class</button>
+      <button data-action-name='Subject Name' name="submit" class="add btn btn-lg btn-info btn-outlin-dark"
+        type="button">Add a subject</button>
+      <button data-action-name='Assessment Name' name="submit" class="add btn btn-lg btn-info btn-outlin-dark"
+        type="button">Add an Assessment category</button>
     </nav>
 
 
 
 
-  <div class="content" style='padding-top:50px' ;>
-    <div class="container">
-      <div class="row justify-content-center">
-       
-      </div>
-    </div>
+    <div class="content" style='padding-top:50px' ;>
+      <div class="container">
+        <div class="row justify-content-center">
 
-    <br><br>
-  </div>
+        </div>
+      </div>
+
+      <br><br>
+    </div>
   </div>
 
 
@@ -101,7 +105,7 @@ session_start();
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="../js/sidebar.js"></script>
-  <script src="../js/report.js"></script>
+  <script src="../js/settinngs.js"></script>
 
 </body>
 
