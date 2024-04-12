@@ -15,11 +15,9 @@
             background: #eee;
             padding-top: 56px;
             background:
-                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                /* Overlay color */
-                url('../images/logo.png') no-repeat center center fixed;
-            /* Background image */
-            /* Specify background image size */
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+              
+            
             background-size: 700px, 700px;
             background-position: top;
             background-position-x: 450px;
@@ -76,7 +74,7 @@ a:hover{
 
         <div class="sch">
             <h4 class="text-center" Style=" margin-left: -12%;"><i>Fidelity Juvinile Basic School</i></h4>
-            <img src="images/logo.png">
+            <img src="../images/logo.png">
         </div>
 
         <h5 class="text-center"style="font-size: 30px;"><em>Student Assessment Portal</em></h5>
@@ -86,9 +84,9 @@ a:hover{
     <div class="box container">
         <h4 class="text-center" style="font-size: 80px;"><em><b>Welcome Our Great Teacher</em></b></h4>
         <div class="container d-flex justify-content-between">
-        <a href="login/login.php"><button class="">LogIn</button></a>
+        <a href="../login/login.php"><button class="">LogIn</button></a>
 
-        <a href="login/register.php"> <button class="">Sign Up</button></a>
+        <a href="../login/register.php"> <button class="">Sign Up</button></a>
         </div>
     </div>
 
