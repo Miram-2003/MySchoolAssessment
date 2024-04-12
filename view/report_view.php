@@ -90,7 +90,7 @@ while ($row_student = $result_students->fetch_assoc()) {
         $classScore = number_format(($classScore / 60) * 50, 2);
 
         // Calculate total score
-        $totalScore = $classScore + $examsScore;
+        $totalScore = number_format(($classScore + $examsScore),2);
 
         // Determine grade and grade title
         $grade = '';
@@ -128,7 +128,7 @@ while ($row_student = $result_students->fetch_assoc()) {
 
     // Close the table
     $report .= "</table> <br><br>";
-    $report .= "<button class='register promote btn btn-info' >Promoted</button>";
+    $report .= "<button data-student-id='$studentID' data-student-name='$studentName' class='register promoted btn btn-info' >Promoted</button>";
     $report .= "<button class='register print btn btn-danger'onclick='printReport(this)'>Print Report</button>";
     $report .= "</div><br><br><br><br>";
     echo $report;

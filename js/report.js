@@ -40,7 +40,7 @@ $(document).ready(function () {
     }
 
     $.ajax({
-      url: "../action/report_action.php",
+      url: "../view/report_view.php",
       type: "POST",
       data: $(this).serialize(),
 
@@ -57,33 +57,31 @@ $(document).ready(function () {
 
 
 
-$(document).on("click", ".delete", function (e) {
+$(document).on("click", ".promoted", function (e) {
   e.preventDefault();
 
-  var gradeID = $(this).data("grade-id");
+  var StudentID = $(this).data("student-id");
+  var name =$(this).data("student-name")
 
   Swal.fire({
-    title: "Are you sure?",
+    title: "Are you sure you want to promote " +name +" ?" ,
     text: "You won't be able to revert this!",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
+    confirmButtonText: "Yes!",
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
-        url: "../action/delete action.php",
+        url: "../action/promote action.php",
         type: "GET",
-        data: { id: studentID },
+        data: { id: StudentID },
         dataType: "json",
         success: function (response) {
           if (response.success) {
-            $('[data-student-id="' + studentID + '"]')
-              .closest("tr")
-              .remove();
             Swal.fire({
-              title: "Deleted!",
+              title: "Promoted!",
               text: response.message,
               icon: "success",
             });
@@ -109,9 +107,3 @@ $(document).on("click", ".delete", function (e) {
   });
 });
 
-function printReport(button) {
-    // Find the closest container of the clicked button
-    var reportContainer = $(button).closest('.container');
-    // Print the contents of the container
-    window.print();
-}
