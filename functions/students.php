@@ -45,7 +45,7 @@ function get_change_class($number){
 function change_student($number, $name){
     global $con;
 
-    $student_query="UPDATE `student` SET `StudentName`=? WHERE `studentID`= ?";
+    $student_query="UPDATE `Student` SET `studentName`=? WHERE `studentID`= ?";
     $student_query = $con->prepare($student_query);
     $student_query->bind_param("si", $name, $number);
     $result =$student_query->execute();
@@ -56,7 +56,7 @@ function change_student($number, $name){
 function change_student_class($number, $name){
     global $con;
 
-    $student_query="UPDATE `student` SET `classID`=? WHERE `studentID`= ?";
+    $student_query="UPDATE `Student` SET `classID`=? WHERE `studentID`= ?";
     $student_query = $con->prepare($student_query);
     $student_query->bind_param("ii", $name, $number);
     $result =$student_query->execute();
@@ -67,7 +67,7 @@ function change_student_class($number, $name){
 
 
 function get_all_subject($con){
-    $subject_query = "SELECT * FROM `subjects`";
+    $subject_query = "SELECT * FROM `Subjects`";
     $subject_execute = $con->query($subject_query);
     if ($subject_execute) {
         $result = $subject_execute->fetch_all(MYSQLI_ASSOC);
@@ -80,7 +80,7 @@ function get_all_subject($con){
 function get_a_subjectname($number){
     global $con;
 
-    $subject_query="SELECT `subjectName` FROM `subjects` WHERE `subjectID` = ?";
+    $subject_query="SELECT `subjectName` FROM `Subjects` WHERE `subjectID` = ?";
     $subject_query = $con->prepare($subject_query);
     $subject_query->bind_param("i", $number);
     $subject_query->execute();
@@ -97,7 +97,7 @@ function get_a_subjectname($number){
 
 
 function get_all_assessment($con){
-    $assess_query = "SELECT * FROM `assessment`";
+    $assess_query = "SELECT * FROM `Assessment`";
     $assess_execute = $con->query($assess_query);
     if ($assess_execute) {
         $result = $assess_execute->fetch_all(MYSQLI_ASSOC);
@@ -109,7 +109,7 @@ function get_all_assessment($con){
 function get_an_assessmentname($number){
     global $con;
 
-    $assess_query="SELECT `assessmentName` FROM `assessment` WHERE `assessmentID` = ?";
+    $assess_query="SELECT `assessmentName` FROM `Assessment` WHERE `assessmentID` = ?";
     $assess_query = $con->prepare($assess_query);
     $assess_query->bind_param("i", $number);
     $assess_query->execute();
@@ -125,7 +125,7 @@ function get_an_assessmentname($number){
 function get_an_studendentname($number){
     global $con;
 
-    $student_query="SELECT `studentName` FROM `student` WHERE `studentID` = ?";
+    $student_query="SELECT `studentName` FROM `Student` WHERE `studentID` = ?";
     $student_query = $con->prepare($student_query);
     $student_query->bind_param("i", $number);
     $student_query->execute();

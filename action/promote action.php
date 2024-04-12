@@ -3,7 +3,7 @@ include "../functions/class.php";
 include "../settings/connection.php";
 if ($_GET["id"]){
     $studentid =($_GET["id"]);
-    $sql = "SELECT `classID` FROM `student` WHERE `studentID`='$studentid'";
+    $sql = "SELECT `classID` FROM `Student` WHERE `studentID`='$studentid'";
     $sql_exe=$con->query($sql);
     if($sql_exe){
         $result = $sql_exe->fetch_assoc();

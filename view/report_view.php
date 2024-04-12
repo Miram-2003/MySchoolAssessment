@@ -13,7 +13,7 @@ $termname = get_a_termname($termID);
 $classname = get_a_classname($classID);
 
 // Retrieve the list of distinct subject IDs from the Grade table
-$sql_subjects = "SELECT DISTINCT subjectID FROM Grade WHERE termID = ? AND `year` = ?";
+$sql_subjects = "SELECT DISTINCT `subjectID` FROM `Grade` WHERE `termID` = ? AND `year` = ?";
 $stmt_subjects = $con->prepare($sql_subjects);
 $stmt_subjects->bind_param("ii", $termID, $academicYear);
 $stmt_subjects->execute();
@@ -26,7 +26,7 @@ while ($row_subject = $result_subjects->fetch_assoc()) {
 // Retrieve the names of subjects corresponding to the subject IDs
 $subjects = [];
 foreach ($subjectIDs as $subjectID) {
-    $sql_subject_name = "SELECT subjectName FROM Subjects WHERE subjectID = ?";
+    $sql_subject_name = "SELECT `subjectName` FROM `Subjects` WHERE `subjectID` = ?";
     $stmt_subject_name = $con->prepare($sql_subject_name);
     $stmt_subject_name->bind_param("i", $subjectID);
     $stmt_subject_name->execute();
@@ -65,7 +65,7 @@ while ($row_student = $result_students->fetch_assoc()) {
     // Retrieve grades for the student in the selected term and academic year
     foreach ($subjects as $subject) {
         // Retrieve grades for the subject
-        $sql_grades = "SELECT * FROM Grade WHERE studentID = ? AND subjectID = ? AND termID = ? AND year = ?";
+        $sql_grades = "SELECT * FROM `Grade` WHERE `studentID` = ? AND `subjectID` = ? AND `termID` = ? AND year = ?";
         $stmt_grades = $con->prepare($sql_grades);
         $stmt_grades->bind_param("iiii", $studentID, $subjectID, $termID, $academicYear);
         $stmt_grades->execute();

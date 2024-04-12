@@ -22,7 +22,7 @@ function grade($classid, $assessmentid, $termid, $subjectid, $year)
         $result = $students->fetch_all(MYSQLI_ASSOC);
         foreach ($result as $row) {
             $student = $row["studentID"];
-            $grade = "SELECT * FROM `grade` WHERE `assessmentID` = ? AND `termID` =? AND `subjectID` =? AND `studentID`= ? AND `year` =?";
+            $grade = "SELECT * FROM `Arade` WHERE `assessmentID` = ? AND `termID` =? AND `subjectID` =? AND `studentID`= ? AND `year` =?";
             $grade_exe = $con->prepare($grade);
             $grade_exe->bind_param("iiiii", $assessmentid, $termid, $subjectid, $student, $year);
             $grade_exe->execute();
@@ -43,7 +43,7 @@ function grade($classid, $assessmentid, $termid, $subjectid, $year)
 
 function get_grade($id){
     global $con;
-    $sql ="SELECT `score` FROM `grade` WHERE `gradeID` = $id";
+    $sql ="SELECT `score` FROM `Grade` WHERE `gradeID` = $id";
     $sql_exe = $con->query($sql);
     return $sql_exe;
 }
@@ -52,7 +52,7 @@ function get_grade($id){
 function change_grade($id, $newscore){
     global $con;
     
-    $grade_query="UPDATE `grade` SET `score`=? WHERE `gradeID`= ?";
+    $grade_query="UPDATE `Grade` SET `score`=? WHERE `gradeID`= ?";
     $grade_query = $con->prepare($grade_query);
     $grade_query->bind_param("ii", $newscore, $id);
     $result =$grade_query->execute();

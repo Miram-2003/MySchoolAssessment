@@ -3,7 +3,7 @@ include "../settings/connection.php";
 $gradeid="";
 if(isset($_GET["id"])){
     $studentid = $_GET["id"];
-    $query ="DELETE FROM `grade` WHERE `gradeID` = ?";
+    $query ="DELETE FROM `Grade` WHERE `gradeID` = ?";
     $delete =$con->prepare($query);
     $delete->bind_param("i", $gradeid);
     $result=$delete->execute();

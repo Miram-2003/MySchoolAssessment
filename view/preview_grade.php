@@ -92,7 +92,7 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
        
 
 
-        $sql_assessment_names = "SELECT assessmentName FROM Assessment";
+        $sql_assessment_names = "SELECT `assessmentName` FROM `Assessment`";
         $stmt_assessment_names = $con->query($sql_assessment_names);
         $assessment_names = [];
         while ($row = $stmt_assessment_names->fetch_assoc()) {
@@ -107,11 +107,11 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
 
         $select_clause = implode(", ", $select_statements);
 
-        $sql = "SELECT Student.studentName, $select_clause FROM Grade
-        INNER JOIN Student ON Grade.studentID = Student.studentID
-        INNER JOIN Assessment ON Grade.assessmentID = Assessment.assessmentID
-        WHERE Student.classID = ? AND Grade.subjectID = ? AND Grade.termID = ? AND Grade.year =?
-        GROUP BY Student.studentID";
+        $sql = "SELECT `Student.studentName`, $select_clause FROM `Grade`
+        INNER JOIN `Student` ON `Grade.studentID` = `Student.studentID`
+        INNER JOIN `Assessment` ON `Grade.assessmentID` = `Assessment.assessmentID`
+        WHERE `Student.classID` = ? AND `Grade.subjectID` = ? AND `Grade.termID` = ? AND `Grade.year` =?
+        GROUP BY `Student.studentID`";
 
         $stmt = $con->prepare($sql);
         $stmt->bind_param("iiii", $classid, $subjectid, $termid, $academicyear);
