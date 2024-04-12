@@ -15,8 +15,8 @@ $hash_password = password_hash($password, PASSWORD_DEFAULT);
 $name = "$fname " . "$lname";
 
 # write an insert query
-$teacher_query = "INSERT INTO `Teacher`(`teacherID`, `teacherName`, `teacherContact`, `teacherEmail`, `teacherPwd`) 
-                    VALUES ('', '$name', '$contact', '$email', '$hash_password')";
+$teacher_query = "INSERT INTO `Teacher`(`teacherName`, `teacherContact`, `teacherEmail`, `teacherPwd`) 
+                    VALUES ( '$name', '$contact', '$email', '$hash_password')";
 
 # execute the query
 $query_excuted = $con->query($teacher_query);
