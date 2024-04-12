@@ -15,7 +15,7 @@
 
     <Style>
         body {
-            background: whitesmoke;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
         }
 
         .box {
@@ -24,12 +24,12 @@
             margin-left: 40%;
             overflow-y: 10px;
         }
-        h4 {
-                color: rgb(148, 6, 105);
+        h4 ,h3, a{
+            color:rgb(111, 22, 114);
             }
 
         .side {
-
+            margin-top: -2%;
             height: 100vh;
             width: 350px;
             position: fixed;
@@ -49,7 +49,7 @@
            margin-left:68%;
            width: 150px;
            height: 40px;
-           background: rgb(148, 6, 105);
+           background: rgb(111, 22, 114);
            color: white;
            font-size: large;
            border: white;
@@ -69,13 +69,13 @@
             <img src="../images/logo.png" alt="school logo">
         </div>
 
-        <h5 class="text-center"><em>Student Assessment Portal</em></h5>
+        <h5 class="text-center" style="font-size: 25px;"><em>Student Assessment Portal</em></h5>
     </div>
     <div class="container">
         <div class="box">
 
             <form action="../action/register-action.php" method="post" id="registerForm">
-                <h4 class="text-center p-2">Sign up</h4>
+                <h3 class="text-center p-2">Sign up</h3>
                 <div class="form-group">
                     <label for="fname">First Name</label>
                     <div class="input-group">
@@ -153,7 +153,7 @@
             </form>
 
             <div class="text-center">
-                <h6 class="m-3"><em>Already have an account? <a href="../login/login.php">Login here</a></em></h6>
+                <h6 class="m-3"style="font-size: 20px;"><em>Already have an account? <a href="../login/login.php">Login here</a></em></h6>
             </div>
         </div>
     </div>

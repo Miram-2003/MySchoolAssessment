@@ -11,7 +11,7 @@
     
     <style>
         body {
-            background: whitesmoke;
+            background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
         }
 
         .box {
@@ -20,8 +20,8 @@
             overflow-y: 10px;
         }
 
-        h4 {
-            color: rgb(148, 6, 105);
+        h4 ,h3,a {
+            color: rgb(111, 22, 114);
         }
 
         .side {
@@ -46,7 +46,7 @@
             margin-left: 68%;
             width: 150px;
             height: 40px;
-            background: rgb(148, 6, 105);
+            background: rgb(111, 22, 114);
             color: white;
             font-size: large;
             border: white;
@@ -63,7 +63,7 @@
             <img src="../images/logo.png">
         </div>
 
-        <h5 class="text-center"><em>Student Assessment Portal</em></h5>
+        <h5 class="text-center"style="font-size: 25px;"><em>Student Assessment Portal</em></h5>
         
     </div>
 
@@ -71,7 +71,7 @@
         <div class="box">
             <form action="../action/login-action.php" method="post" id='loginForm'>
                 <div>
-                    <h4 class="text-center p-2">LogIn</h4>
+                    <h3 class="text-center p-2">LogIn</h3>
 
                     <div>
                         <div class="form-group">
@@ -103,7 +103,7 @@
                         </div>
 
                         <div class="text-center">
-                            <h6 class="m-3"><em>Don't have an account? <a href="../login/register.php">Signup here</a></em>
+                            <h6 class="m-3" style="font-size: 20px;"><em>Don't have an account? <a href="../login/register.php">Signup here</a></em>
                             </h6>
                         </div>
             </form>

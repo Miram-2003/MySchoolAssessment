@@ -1,16 +1,16 @@
-
-
 body {
   background: #eee;
   padding-top: 56px;
-  background: 
-  linear-gradient( rgba(0, 0, 0, 0.5) , rgba(0, 0, 0, 0.5)), /* Overlay color */
-  url('../images/logo.png') no-repeat center center fixed; /* Background image */
-/* Specify background image size */
-background-size: 700px, 700px;
-background-position: top;
-background-position-x: 450px;
-font-family: "Times New Roman", Times, serif;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    /* Overlay color */
+    url('../images/logo.png') no-repeat center center fixed;
+  /* Background image */
+  /* Specify background image size */
+  background-size: 700px, 700px;
+  background-position: top;
+  background-position-x: 450px;
+  font-family: "Times New Roman", Times, serif;
 
 }
 
@@ -42,8 +42,8 @@ font-family: "Times New Roman", Times, serif;
 
   margin-top: 90px;
 
-padding-left: 10px; 
-padding-right: 20px; 
+  padding-left: 10px;
+  padding-right: 20px;
 
 
 }
@@ -63,7 +63,8 @@ hr.h-color {
   color: white;
 }
 
-.sidebar li a, li {
+.sidebar li a,
+li {
   color: black;
   font-size: medium;
 }
@@ -87,39 +88,72 @@ hr.h-color {
 }
 
 
-    .second-navbar {
-      position: fixed;
-      width: calc(100% - 250px); /* Adjusted width with a gap of 20px */
-      top: 70px; /* Adjust according to the height of the first navbar */
-      z-index: 1000; /* Ensure it's above other content */
-      background-color: #f8f9fa; /* Set your desired background color */
-      border-bottom: 1px solid #dee2e6; /* Add a border for separation */
-      
-      margin-right: 10px; /* Horizontal gap */
-    }
+.second-navbar {
+  position: fixed;
+  width: calc(100% - 250px);
+  /* Adjusted width with a gap of 20px */
+  top: 70px;
+  /* Adjust according to the height of the first navbar */
+  z-index: 1000;
+  /* Ensure it's above other content */
+  background-color: #f8f9fa;
+  /* Set your desired background color */
+  border-bottom: 1px solid #dee2e6;
+  /* Add a border for separation */
 
-   
-   .register {
-    margin-top: 10px !important;
-    margin-left: 50px;
-    margin-right: 0px;
-    
-    float: right;
-  
-   }
+  margin-right: 10px;
+  /* Horizontal gap */
+}
 
-  #previewForm{
-    width:100%;
-    border: rgb(19, 140, 177) transparent 1px;
-    background: white;
-    
-  }
 
-  .preview{
-    float: right;
-    
-    
-  }
-.container{
+.register {
+  margin-top: 10px !important;
+  margin-left: 50px;
+  margin-right: 0px;
+
+  float: right;
+
+}
+
+#previewForm {
+  width: 100%;
+  border: rgb(19, 140, 177) transparent 1px;
+  background: white;
+
+}
+
+.preview {
+  float: right;
+
+
+}
+
+.container {
   border-radius: 10px !important;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    max-width: 768px;
   }
+}
+
+/* Phone styles */
+@media screen and (max-width: 576px) {
+  body {
+    max-width: 576px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  body {
+    max-width: 400px;
+  }
+}
+
+/* Phone styles */
+@media screen and (max-width: 300px) {
+  body {
+    max-width: 300px;
+  }
+}
