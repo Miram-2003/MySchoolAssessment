@@ -3,8 +3,9 @@ include "../functions/class.php";
 
 include "../settings/connection.php";
 include "../functions/students.php";
-session_start();
-?>
+include "../settings/core.php";
+isLogin()
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,7 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="../css/style.css" rel="stylesheet" />
-    <title>Document</title>
+    <title>View Student Report</title>
 
 </head>
 
@@ -58,9 +59,8 @@ session_start();
 
         <nav class="navbar  fixed-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <div class="d-flex justify-content-between">
-                    <a class="navbar-brand justify-content-between d-md-none d-block" href="#">coding lauge</a>
-                    <button class="btn px-1 py-0 open-btn"><i class="fa fa-stream" style="color: #74C0FC;"></i></button>
+                <div style="color: #b40c90; font-size:20px;">
+                    <b><i> Student Assessement Portal</i></b>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -69,13 +69,17 @@ session_start();
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">profile</a>
-                        </li>
-                    </ul>
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <b><?php
+                        echo $_SESSION["name"]
+                            ?></b>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../login/signout.php">Sign out</a></li>
 
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -135,6 +139,7 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/report.js"></script>
+
 
 </body>
 

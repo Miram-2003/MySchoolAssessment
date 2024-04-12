@@ -3,8 +3,9 @@ include "../functions/class.php";
 
 include "../settings/connection.php";
 include "../functions/students.php";
-session_start();
-?>
+include "../settings/core.php";
+isLogin()
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,7 @@ session_start();
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <link href="../css/style.css" rel="stylesheet" />
-  <title>Document</title>
+  <title>View Recored Assessement</title>
 
 </head>
 
@@ -54,10 +55,9 @@ session_start();
 
 
     <nav class="navbar  fixed-top navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <div class="d-flex justify-content-between">
-          <a class="navbar-brand justify-content-between d-md-none d-block" href="#">coding lauge</a>
-          <button class="btn px-1 py-0 open-btn"><i class="fa fa-stream" style="color: #74C0FC;"></i></button>
+      < <div class="container-fluid">
+        <div style="color: #b40c90; font-size:20px;">
+          <b><i> Student Assessement Portal</i></b>
         </div>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -65,85 +65,90 @@ session_start();
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">profile</a>
-            </li>
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <b><?php
+            echo $_SESSION["name"]
+            ?></b>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="../login/signout.php">Sign out</a></li>
+            
           </ul>
-
         </div>
-      </div>
-    </nav>
+  </div>
+  </nav>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
 
-      <form class="container-fluid justify-content-evenly" method="post" id='navform' name='navform'>
-        <div class="container-fluid justify-content-evenly">
+    <form class="container-fluid justify-content-evenly" method="post" id='navform' name='navform'>
+      <div class="container-fluid justify-content-evenly">
 
 
         <lable for="classname"><b>Class Name</b></lable>
-          <select name="classname" id="classname" style="width:200px;">
-            <option> </option>
-            <?php
-            $result = get_all_class($con);
+        <select name="classname" id="classname" style="width:200px;">
+          <option> </option>
+          <?php
+          $result = get_all_class($con);
 
-            foreach ($result as $row) {
-              echo "<option value=" . $row['classID'] . ">" . $row["className"] . "</option>";
-            }
-            ?>
-          </select>
-
-
-          <lable for="classterm"><b>Term</b></lable>
-          <select name="termname" id="termname">
-            <option> </option>
-            <?php
-            $result = get_all_term($con);
-            foreach ($result as $row) {
-              echo "<option value=" . $row['termID'] . ">" . $row["termName"] . "</option>";
-            }
-
-            ?>
-           
-          </select>
+          foreach ($result as $row) {
+            echo "<option value=" . $row['classID'] . ">" . $row["className"] . "</option>";
+          }
+          ?>
+        </select>
 
 
-          <label for='students'><b> Suject Name</b> </label>
-          <select name="subject" id="subject">
-            <option> </option>
-            <?php
-            $result = get_all_subject($con);
-            foreach ($result as $row) {
-              echo "<option value=" . $row['subjectID'] . ">" . $row["subjectName"] . "</option>";
-            }
-            ?>
-             
-          </select>
+        <lable for="classterm"><b>Term</b></lable>
+        <select name="termname" id="termname">
+          <option> </option>
+          <?php
+          $result = get_all_term($con);
+          foreach ($result as $row) {
+            echo "<option value=" . $row['termID'] . ">" . $row["termName"] . "</option>";
+          }
+
+          ?>
+
+        </select>
+
+
+        <label for='students'><b> Suject Name</b> </label>
+        <select name="subject" id="subject">
+          <option> </option>
+          <?php
+          $result = get_all_subject($con);
+          foreach ($result as $row) {
+            echo "<option value=" . $row['subjectID'] . ">" . $row["subjectName"] . "</option>";
+          }
+          ?>
+
+        </select>
 
 
 
-          <lable for="assessment"><b>Assessment Name</b></lable>
-          <select name="assessment" id="assessment">
-            <option> </option>
-            <?php
-            $result = get_all_assessment($con);
-            foreach ($result as $row) {
-              echo "<option value=" . $row['assessmentID'] . ">" . $row["assessmentName"] . "</option>";
-            }
-            ?>
-            <option value='6'> All</option>
-          </select><br>
-          <div style ='margin-top:10px;'>
+        <lable for="assessment"><b>Assessment Name</b></lable>
+        <select name="assessment" id="assessment">
+          <option> </option>
+          <?php
+          $result = get_all_assessment($con);
+          foreach ($result as $row) {
+            echo "<option value=" . $row['assessmentID'] . ">" . $row["assessmentName"] . "</option>";
+          }
+          ?>
+          <option value='6'> All</option>
+        </select><br>
+        <div style='margin-top:10px;'>
           <lable for="assessment"><b>Academic Year</b></lable>
           <input type='text' name='year' id='year'>
-          </div>
+        </div>
 
 
-          <button type="submit" name="submitAssessment" id="pen-btn"
-            class="register btn btn-lg btn-info btn-outlin-dark" type="button" >Done</button>
-      </form>
-  </div>
+        <button type="submit" name="submitAssessment" id="pen-btn" class="register btn btn-lg btn-info btn-outlin-dark"
+          type="button">Done</button>
+      </div>
+    </form>
+
 
   </nav>
 
@@ -153,7 +158,7 @@ session_start();
   <div class="content" style='padding-top:50px' ;>
     <div class="container">
       <div class="row justify-content-center">
-       
+
       </div>
     </div>
 
@@ -167,7 +172,7 @@ session_start();
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="../js/sidebar.js"></script>
-  <script src="../js/preview_grade.js"></script>
+
 
 </body>
 

@@ -91,5 +91,5 @@ INSERT INTO `Class` (`className`) VALUES
 
 --
 ALTER TABLE `Grade`
-  ADD CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `Student` (`studentID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `grade_ibfk_1` FOREIGN KEY (`studentID`) REFERENCES `Student` (`studentID`) ON DELETE CASCADE ON UPDATE CASCADE;
 

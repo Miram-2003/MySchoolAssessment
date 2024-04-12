@@ -57,12 +57,14 @@
 
 <body>
     <div class="side bg-light">
+        
         <div class="sch">
             <h4 class="text-center" Style=" margin-left: -12%;"><i>Fidelity Juvinile Basic School</i></h4>
-            <img src="../images/logo.png" alt="school logo">
+            <img src="../images/logo.png">
         </div>
 
         <h5 class="text-center"><em>Student Assessment Portal</em></h5>
+        
     </div>
 
     <div class="container">

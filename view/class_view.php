@@ -1,6 +1,8 @@
 <?php
 include "../functions/class.php";
-?>
+include "../settings/core.php";
+isLogin()
+  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +14,7 @@ include "../functions/class.php";
   <script src="https://kit.fontawesome.com/cb76afc7c2.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <link href="../css/style.css" rel="stylesheet" />
-  <title>Document</title>
+  <title>View a  class/title>
 
 
 </head>
@@ -22,7 +24,7 @@ include "../functions/class.php";
     <div class="sidebar" id="side_nav">
       <div class="header-box px-3 pt-2 pb-4 d-flex justify-content-between">
         <img src="../images/logo.png" class="logo fs-4 rounded mx-auto d-block" alt="logo">
-        
+
       </div>
       <hr class="h-color mx-2">
 
@@ -51,9 +53,8 @@ include "../functions/class.php";
 
     <nav class="navbar  fixed-top navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <div class="d-flex justify-content-between">
-          <a class="navbar-brand justify-content-between d-md-none d-block" href="#">coding lauge</a>
-          <button class="btn px-1 py-0 open-btn"><i class="fa fa-stream" style="color: #74C0FC;"></i></button>
+        <div style="color: #b40c90; font-size:20px;">
+          <b><i> Student Assessement Portal</i></b>
         </div>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -61,13 +62,17 @@ include "../functions/class.php";
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">profile</a>
-            </li>
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <b><?php
+            echo $_SESSION["name"]
+            ?></b>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="../login/signout.php">Sign out</a></li>
+            
           </ul>
-
         </div>
       </div>
     </nav>
@@ -102,7 +107,9 @@ include "../functions/class.php";
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="../js/sidebar.js"></script>
   <script src="../js/class.js"></script>
-  
+
+
+
 </body>
 
 </html>

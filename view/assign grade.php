@@ -1,6 +1,8 @@
 <?php
 include "../functions/class.php";
-include "../functions/students.php"
+include "../functions/students.php";
+include "../settings/core.php";
+isLogin()
   ?>
 
 <!DOCTYPE html>
@@ -14,7 +16,7 @@ include "../functions/students.php"
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <link href="../css/style.css" rel="stylesheet" />
-  <title>Document</title>
+  <title>Record Student Grades</title>
 
 </head>
 
@@ -51,25 +53,23 @@ include "../functions/students.php"
 
     <nav class="navbar  fixed-top navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <div class="d-flex justify-content-between">
-          <a class="navbar-brand justify-content-between d-md-none d-block" href="#">coding lauge</a>
-          <button class="btn px-1 py-0 open-btn"><i class="fa fa-stream" style="color: #74C0FC;"></i></button>
+        <div style="color: #b40c90; font-size:20px;">
+          <b><i> Student Assessement Portal</i></b>
         </div>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">profile</a>
-            </li>
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <b><?php
+            echo $_SESSION["name"]
+            ?></b>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="../login/signout.php">Sign out</a></li>
+            
           </ul>
-
         </div>
-      </div>
     </nav>
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
@@ -130,24 +130,25 @@ include "../functions/students.php"
 
           <button type="submit" name="submitAssessment" id="pen-btn"
             class="register btn btn-lg btn-info btn-outlin-dark" type="button">Done</button>
+        </div>
       </form>
-  </div>
-
-  </nav>
 
 
+    </nav>
 
 
-  <div class="content" style='padding-top:50px' ;>
-    <div class="container">
-      <div class="row justify-content-center">
 
 
+    <div class="content" style='padding-top:50px' ;>
+      <div class="container">
+        <div class="row justify-content-center">
+
+
+        </div>
       </div>
-    </div>
 
-    <br><br>
-  </div>
+      <br><br>
+    </div>
   </div>
 
 
@@ -157,6 +158,7 @@ include "../functions/students.php"
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="../js/sidebar.js"></script>
   <script src="../js/grade.js"></script>
+
 
 
 

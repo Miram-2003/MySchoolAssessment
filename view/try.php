@@ -17,7 +17,7 @@ session_start();
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <link href="../css/style.css" rel="stylesheet" />
-  <title>Document</title>
+  <title>Settings</title>
 
 </head>
 
@@ -74,40 +74,11 @@ session_start();
       </div>
     </nav>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar">
-
-      <form class="container-fluid justify-content-evenly" method="post" id='navform'>
-        <h5><b>Select a class </b></h5>
-
-        <select name="student_class" id="student_class" style="width:200px;">
-          <option> </option>
-          <?php
-          $result = get_all_class($con);
-
-          foreach ($result as $row) {
-            echo "<option value=" . $row['classID'] . ">" . $row["className"] . "</option>";
-          }
-          ?>
-        </select>
-
-        <h5><b>Term</b></h5>
-          <select name="termname" id="termname">
-            <option> </option>
-            <?php
-            $result = get_all_term($con);
-            foreach ($result as $row) {
-              echo "<option value=" . $row['termID'] . ">" . $row["termName"] . "</option>";
-            }
-
-            ?>
-          </select>
-
-          <h5><b>Academic year </b></h5>
-          <input type='text' name='year' id='year'>
-
-        <button type="submit" name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Done</button>
-      </form>
-
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light second-navbar container-fluid justify-content-evenly">
+ 
+      <button  name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Add a class</button>
+      <button  name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Add a subject</button>
+      <button  name="submit" class="btn btn-lg btn-info btn-outlin-dark" type="button">Add an Assessment category</button>
     </nav>
 
 
