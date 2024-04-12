@@ -2,7 +2,7 @@
 
 $_SERVER = "localhost";
 $USERNAME = "root";
-$PASSWORD =  "";
+$PASSWORD =  "kch6Xcwx3FF/";
 $DB = "school_assessment";
 
 $con =new mysqli($_SERVER, $USERNAME, $PASSWORD, $DB) or die("could not connect database");
@@ -10,5 +10,5 @@ $con =new mysqli($_SERVER, $USERNAME, $PASSWORD, $DB) or die("could not connect 
 if ($con->connect_error) {
     die("connecton failed". $con->connect_error);
 }
-// "kch6Xcwx3FF/"
+
 ?>
