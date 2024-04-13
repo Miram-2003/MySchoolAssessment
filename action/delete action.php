@@ -12,7 +12,7 @@ if(isset($_GET["id"])){
     }else{
         echo json_encode(['success' => false, 'message' => 'Sorry, could not remove student']);
     }
-}
+} 
 
 ?>
 
