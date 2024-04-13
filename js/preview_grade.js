@@ -148,7 +148,7 @@ $(document).on("click", ".delete", function (e) {
         $.ajax({
           url: "../action/delete action.php",
           type: "GET",
-          data: { id: studentID },
+          data: { id: gradeID },
           dataType: "json",
           success: function (response) {
             if (response.success) {
