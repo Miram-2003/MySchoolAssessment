@@ -109,8 +109,8 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
 
         $sql = "SELECT Student.studentName, $select_clause FROM `Grade`
         INNER JOIN `Student` ON Grade.studentID = Student.studentID
-        INNER JOIN `Assessment` ON Grade.assessmentID = `Assessment.assessmentID`
-        WHERE `Student.classID` = ? AND `Grade.subjectID` = ? AND `Grade.termID` = ? AND `Grade.year` =?
+        INNER JOIN `Assessment` ON Grade.assessmentID = Assessment.assessmentID
+        WHERE Student.classID = ? AND `Grade.subjectID` = ? AND `Grade.termID` = ? AND `Grade.year` =?
         GROUP BY Student.studentID";
 
         $stmt = $con->prepare($sql);
