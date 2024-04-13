@@ -83,7 +83,7 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
         $table .= "<tr><th>Assessment Name:</th><th>" . $assessmentname . "</th></tr>";
         $table .= "<tr><th>Academic Year:</th><th>" . $academicyear . "</th></tr>";
         $table .= "</table>";
-        $table .= "</div></div><";
+        $table .= "</div></div>";
         $table .= "<div class='row'>";
         $table .= "<div class='col'>";
         $table .= "<table border='1' class='table table-light table-bordered'>";
@@ -107,7 +107,7 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
 
         $select_clause = implode(", ", $select_statements);
 
-        $sql = "SELECT `Student.studentName`, $select_clause FROM `Grade`
+        $sql = "SELECT Student.studentName, $select_clause FROM `Grade`
         INNER JOIN `Student` ON `Grade.studentID` = `Student.studentID`
         INNER JOIN `Assessment` ON `Grade.assessmentID` = `Assessment.assessmentID`
         WHERE `Student.classID` = ? AND `Grade.subjectID` = ? AND `Grade.termID` = ? AND `Grade.year` =?
@@ -141,8 +141,6 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
     }
 
     }
-}else{
-    echo "helloo";
 }
 
 ?>
