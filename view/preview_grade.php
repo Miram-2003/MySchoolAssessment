@@ -108,10 +108,10 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
         $select_clause = implode(", ", $select_statements);
 
         $sql = "SELECT Student.studentName, $select_clause FROM `Grade`
-        INNER JOIN `Student` ON `Grade.studentID` = `Student.studentID`
-        INNER JOIN `Assessment` ON `Grade.assessmentID` = `Assessment.assessmentID`
+        INNER JOIN `Student` ON Grade.studentID = Student.studentID
+        INNER JOIN `Assessment` ON Grade.assessmentID = `Assessment.assessmentID`
         WHERE `Student.classID` = ? AND `Grade.subjectID` = ? AND `Grade.termID` = ? AND `Grade.year` =?
-        GROUP BY `Student.studentID`";
+        GROUP BY Student.studentID";
 
         $stmt = $con->prepare($sql);
         $stmt->bind_param("iiii", $classid, $subjectid, $termid, $academicyear);
