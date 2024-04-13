@@ -5,8 +5,7 @@ body {
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     /* Overlay color */
     url('../images/logo.png') no-repeat center center fixed;
-  /* Background image */
-  /* Specify background image size */
+  
   background-size: 700px, 700px;
   background-position: top;
   background-position-x: 450px;
@@ -132,28 +131,5 @@ li {
   border-radius: 10px !important;
 }
 
-@media screen and (max-width: 768px) {
-  body {
-    max-width: 768px;
-  }
-}
 
-/* Phone styles */
-@media screen and (max-width: 576px) {
-  body {
-    max-width: 576px;
-  }
-}
 
-@media screen and (max-width: 400px) {
-  body {
-    max-width: 400px;
-  }
-}
-
-/* Phone styles */
-@media screen and (max-width: 300px) {
-  body {
-    max-width: 300px;
-  }
-}

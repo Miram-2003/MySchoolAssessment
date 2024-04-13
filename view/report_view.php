@@ -24,18 +24,18 @@ while ($row_subject = $result_subjects->fetch_assoc()) {
 }
 
 // Retrieve the names of subjects corresponding to the subject IDs
-$subjects = [];
-foreach ($subjectIDs as $subjectID) {
-    $sql_subject_name = "SELECT `subjectName` FROM `Subjects` WHERE `subjectID` = ?";
-    $stmt_subject_name = $con->prepare($sql_subject_name);
-    $stmt_subject_name->bind_param("i", $subjectID);
-    $stmt_subject_name->execute();
-    $result_subject_name = $stmt_subject_name->get_result();
-    if ($result_subject_name->num_rows > 0) {
-        $row_subject_name = $result_subject_name->fetch_assoc();
-        $subjects[] = $row_subject_name['subjectName'];
-    }
-}
+// $subjects = [];
+// foreach ($subjectIDs as $subjectID) {
+//     $sql_subject_name = "SELECT `subjectName` FROM `Subjects` WHERE `subjectID` = ?";
+//     $stmt_subject_name = $con->prepare($sql_subject_name);
+//     $stmt_subject_name->bind_param("i", $subjectID);
+//     $stmt_subject_name->execute();
+//     $result_subject_name = $stmt_subject_name->get_result();
+//     if ($result_subject_name->num_rows > 0) {
+//         $row_subject_name = $result_subject_name->fetch_assoc();
+//         $subjects[] = $row_subject_name['subjectName'];
+//     }
+// }
 
 // Retrieve grades for each student in the selected class
 $result_students = get_all_student_class($classID);
@@ -63,7 +63,7 @@ while ($row_student = $result_students->fetch_assoc()) {
     $report .= "<tr><th>Subject Name</th><th>Class Score</th><th>Exams Score</th><th>Total</th><th>Grade</th><th>Grade Title</th></tr>";
 
     // Retrieve grades for the student in the selected term and academic year
-    foreach ($subjects as $subject) {
+    foreach ($subjectIDs as $subjectID) {
         // Retrieve grades for the subject
         $sql_grades = "SELECT * FROM `Grade` WHERE `studentID` = ? AND `subjectID` = ? AND `termID` = ? AND year = ?";
         $stmt_grades = $con->prepare($sql_grades);
@@ -74,7 +74,7 @@ while ($row_student = $result_students->fetch_assoc()) {
         // Initialize variables for scores and grade calculation
         $classScore = 0;
         $examsScore = 0;
-
+        $subject=get_a_subjectname($subjectID);
         // Iterate over each grade for the subject
         while ($grade_row = $result_grades->fetch_assoc()) {
             // Calculate class score (excluding exams)
@@ -87,7 +87,7 @@ while ($row_student = $result_students->fetch_assoc()) {
         }
 
         // Convert class score to a scale of 50
-        $classScore = number_format(($classScore / 60) * 50, 2);
+        $classScore = ($classScore / 60) * 50;
 
         // Calculate total score
         $totalScore = number_format(($classScore + $examsScore),2);

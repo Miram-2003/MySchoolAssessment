@@ -146,14 +146,14 @@ $(document).on("click", ".delete", function (e) {
       if (result.isConfirmed) {
        
         $.ajax({
-          url: "../action/delete action.php",
+          url: "../action/delete grade action.php",
           type: "GET",
           data: { id: gradeID },
           dataType: "json",
           success: function (response) {
             if (response.success) {
              
-              $('[data-student-id="' + studentID + '"]')
+              $('[data-grade-id="' + gradeID + '"]')
                 .closest("tr")
                 .remove();
               Swal.fire({

@@ -56,8 +56,8 @@ if (isset($_POST["termname"]) && isset($_POST["classname"]) && isset($_POST["sub
                     $stu_form .= "<td>" . $student . "</td>";
                     $stu_form .= "<td>" . $grade["score"] . "</td>";
                     $stu_form .= "<td>
-                    <button class='edit btn btn-info' data-grade-id='" . $grade['studentID'] . "'>Change Score</button>
-                    <button class='delete btn btn-danger' data-student-id='" . $grade['studentID'] . "'>Remove Score</button>
+                    <button class='edit btn btn-info' data-grade-id='" .$grade['gradeID']. "'>Change Score</button>
+                    <button class='delete btn btn-danger' data-grade-id='" .$grade['gradeID']. "'>Remove Score</button>
                     </td>";
                     $stu_form .= "</tr>";
 
