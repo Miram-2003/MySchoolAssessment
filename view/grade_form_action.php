@@ -14,7 +14,7 @@ $termname = get_a_termname($term);
 $subjectname = get_a_subjectname($subject);
 $assessmentname= get_an_assessmentname($assessment);
 
-$query = "SELECT * FROM `student` WHERE `classID` = ?";
+$query = "SELECT * FROM `Student` WHERE `classID` = ?";
 $query_prepare = $con->prepare($query);
 $query_prepare->bind_param("i", $class);
 $query_prepare->execute();
