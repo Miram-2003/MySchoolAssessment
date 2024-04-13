@@ -35,15 +35,5 @@ if (empty($studentNames)) {
     }
 
 
-// } else {
 
-//     $classname = $_POST["stage"];
-//     $$classid= get_class_id($stage);
-
-//     $_SESSION["classid"] = $classid;
-//     $_SESSION["classname"] = $classname;
-//     $_SESSION["student"] = array_filter($_POST["input"]);
-//    header("Location:../view/preview.php");
-
-// }
 ?>

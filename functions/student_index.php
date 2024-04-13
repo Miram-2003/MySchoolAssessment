@@ -22,7 +22,7 @@ function grade($classid, $assessmentid, $termid, $subjectid, $year)
         $result = $students->fetch_all(MYSQLI_ASSOC);
         foreach ($result as $row) {
             $student = $row["studentID"];
-            $grade = "SELECT * FROM `Arade` WHERE `assessmentID` = ? AND `termID` =? AND `subjectID` =? AND `studentID`= ? AND `year` =?";
+            $grade = "SELECT * FROM `Grade` WHERE `assessmentID` = ? AND `termID` =? AND `subjectID` =? AND `studentID`= ? AND `year` =?";
             $grade_exe = $con->prepare($grade);
             $grade_exe->bind_param("iiiii", $assessmentid, $termid, $subjectid, $student, $year);
             $grade_exe->execute();
